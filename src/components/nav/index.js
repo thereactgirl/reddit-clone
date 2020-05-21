@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: 'relative',
+    display: 'flex',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.primary.main,
     '&:hover': {
@@ -72,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -95,11 +95,11 @@ const useStyles = makeStyles((theme) => ({
   getCoins: {
     display:'-ms-flexbox',
     display: 'flex',
-    // -ms-flex-align: center,
+    '-ms-flex-align': 'center',
     alignItems: 'center',
     padding: '7px 16px 7px 12px',
     borderRadius: '9999px',
-    // color: var(--newRedditTheme-bodyText),
+    color: 'var(--newRedditTheme-bodyText)',
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     border: '1px solid #ddbd37',
@@ -113,17 +113,27 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 10,
   },
   gridContainer: {
-      display: 'flex'
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+  },
+  gridPost: {
+    display: 'flex',
+    alignItems: 'center',
   },
   gridItem: {
       margin: '0 10px',
+  },
+  mainContainer: {
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 }));
 
 const  Nav = () => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -205,123 +215,125 @@ const  Nav = () => {
   return (
     <div className={classes.grow}>
       <AppBar position="static" color='light'>
-        <Toolbar>
-            <Grid container>
-                <Grid item md={4} className={classes.gridContainer}>
-                    <Grid>
-                        <IconButton
-                        edge="start"
-                        className={classes.iconButton}
-                        aria-label="reddit logo"
-                        >
-                        <RedditIcon fontSize='large' color='primary' />
-                        </IconButton>
-                    </Grid>
-                    <Grid>
-                        <IconButton
-                            edge="start"
-                            className={classes.createPostIcon}
-                            aria-label="create post icon"
-                            >
-                            <BorderColorIcon color='secondary' />
-                        </IconButton>
-                    </Grid>
-                    <Grid>
-                        <Typography className={classes.createPost} variant="h6" noWrap>
-                            Create Post
-                        </Typography>
-                    </Grid>
-                </Grid>
-            
-                <Grid item md={2} className={classes.search}>
-                    <div className={classes.searchIcon}>
-                    <SearchIcon />
-                    </div>
-                    <InputBase
-                    placeholder="Search…"
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
-                    inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Grid>
+        <Toolbar style={{ minHeight: '30px'}}>
+            <Grid container className={classes.mainContainer}>
+              <Grid item md={2} className={classes.gridPost}>
+                  <Grid className={classes.gridItem}>
+                      <IconButton
+                      edge="start"
+                      className={classes.iconButton}
+                      aria-label="reddit logo"
+                      >
+                      <RedditIcon fontSize='large' color='primary' />
+                      </IconButton>
+                  </Grid>
+                  <Grid>
+                      <IconButton
+                          edge="start"
+                          className={classes.createPostIcon}
+                          aria-label="create post icon"
+                          >
+                          <BorderColorIcon color='secondary' />
+                      </IconButton>
+                  </Grid>
+                  <Grid>
+                      <Typography className={classes.createPost} variant="h6" noWrap>
+                          Create Post
+                      </Typography>
+                  </Grid>
+              </Grid>
+          
+              <Grid item md={5} className={classes.search}>
+                  <div className={classes.searchIcon}>
+                  <SearchIcon />
+                  </div>
+                  <InputBase
+                  placeholder="Search…"
+                  classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                  />
+              </Grid>
 
-                <Grid item md={2} className={classes.gridContainer}>
-                    <Grid item md={4} className={classes.gridItem}>
-                        <IconButton>
-                            <TrendingUpIcon />
-                        </IconButton>
-                    </Grid>
-                    <Grid item md={4} className={classes.gridItem}>
-                        <IconButton>
-                            <EqualizerIcon />
-                        </IconButton>
-                    </Grid>
-                    <Grid item md={4} className={classes.gridItem}>
-                        <IconButton>
-                            <FiberPinIcon />
-                        </IconButton>
-                    </Grid>
-                </Grid>
+              <Grid item md={1} className={classes.gridContainer}>
+                  {/* <Grid item md={4} className={classes.gridItem}> */}
+                      <IconButton>
+                          <TrendingUpIcon />
+                      </IconButton>
+                  {/* </Grid> */}
+                  {/* <Grid item md={4} className={classes.gridItem}> */}
+                      <IconButton>
+                          <EqualizerIcon />
+                      </IconButton>
+                  {/* </Grid> */}
+                  {/* <Grid item md={4} className={classes.gridItem}> */}
+                      <IconButton>
+                          <FiberPinIcon />
+                      </IconButton>
+                  {/* </Grid> */}
+              </Grid>
 
-                <Divider orientation="vertical" flexItem />
+              <Divider orientation="vertical" flexItem />
 
-                <Grid className={classes.gridContainer}>
-                    <Grid item md={4} className={classes.gridItem}>
-                        <IconButton>
-                            <SmsRoundedIcon />
-                        </IconButton>
-                    </Grid>
-                    <Grid item md={4} className={classes.gridItem}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                    </Grid>
-                    <Grid item md={4} className={classes.gridItem}>
-                        <IconButton>
-                            <BorderColorIcon />
-                        </IconButton>
-                    </Grid>
-                </Grid>
+              <Grid item md={1} className={classes.gridContainer}>
+                  {/* <Grid item md={4} className={classes.gridItem}> */}
+                      <IconButton>
+                          <SmsRoundedIcon />
+                      </IconButton>
+                  {/* </Grid> */}
+                  {/* <Grid item md={4} className={classes.gridItem}> */}
+                      <IconButton aria-label="show 4 new mails" color="inherit">
+                          <Badge badgeContent={4} color="secondary">
+                              <MailIcon />
+                          </Badge>
+                      </IconButton>
+                  {/* </Grid> */}
+                  {/* <Grid item md={4} className={classes.gridItem}> */}
+                      <IconButton>
+                          <BorderColorIcon />
+                      </IconButton>
+                  {/* </Grid> */}
+              </Grid>
 
 
-        {/* <Grid item md ={4}> */}
-          <div className={classes.getCoins}>
-            <CopyrightRoundedIcon fontSize="small" className={classes.coinIcon}/> 
-            <Typography>
-                Get Coins
-            </Typography>
-          </div>
-        {/* </Grid> */}
+              <Grid item md={1}>
+                <div className={classes.getCoins}>
+                  <CopyrightRoundedIcon fontSize="small" className={classes.coinIcon}/> 
+                  <Typography>
+                      Get Coins
+                  </Typography>
+                </div>
+              </Grid>
 
-        <IconButton
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-        >
-            <AccountCircle />
-        </IconButton>
+              <Grid item md={1}>
+                <IconButton
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                >
+                    <AccountCircle />
+                </IconButton>
+              </Grid>
 
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </div>
 
-          </Grid>
-        </Toolbar>
+            </Grid>
+          </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
