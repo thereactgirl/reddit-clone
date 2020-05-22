@@ -1,0 +1,23 @@
+<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" stroke="null" style="vector-effect: non-scaling-stroke;">
+ <title stroke="null"/>
+
+ <g stroke="null">
+  <title stroke="null">background</title>
+  <rect stroke="null" fill="none" id="canvas_background" height="26" width="26" y="-1" x="-1"/>
+ </g>
+ <g stroke="null">
+  <title stroke="null">Layer 1</title>
+  <rect stroke="#dae0e7" rx="4" id="svg_24" height="23.955991" width="23.919585" y="-0.028806" x="0.080414" stroke-width="null" fill="#dae0e7"/>
+  <path stroke="#303c42" id="svg_17" d="m7.537401,20.644453" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+  <ellipse stroke="#ffffff" ry="5.406481" rx="4.605521" id="svg_19" cy="24.3762" cx="12.145628" stroke-width="null" fill="#ffffff"/>
+  <g id="svg_20">
+   <path stroke="#303c42" id="svg_10" d="m6.905751,17.995188" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+   <path stroke="#303c42" id="svg_11" d="m6.970846,19.069344" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+   <ellipse stroke="#ffffff" fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" ry="4.494466" rx="7.739548" id="_Path_" cy="14.133599" cx="12.455091"/>
+   <circle stroke="#ffffff" fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" r="1.123616" id="_Path_5" cy="7.017361" cx="18.972605"/>
+   <polyline stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round" points="12.455090343952179,9.639132708311081 12.455090343952179,5.893744677305222 17.750572979450226,6.8076193034648895 " id="_Path_6"/>
+   <path stroke="#ffffff" fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" id="_Path_7" d="m7.04555,10.92005a2.02858,1.8652 0 1 0 -2.2078,2.43451"/>
+   <path stroke="#ffffff" fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" id="_Path_8" d="m18.010257,10.810834a2.028576,1.865203 0 1 1 2.207808,2.434502"/>
+  </g>
+ </g>
+</svg>

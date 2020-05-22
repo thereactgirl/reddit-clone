@@ -27,6 +27,9 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import FiberPinIcon from '@material-ui/icons/FiberPin';
 import SmsRoundedIcon from '@material-ui/icons/SmsRounded';
 import CopyrightRoundedIcon from '@material-ui/icons/CopyrightRounded';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import RedditLogo from '../../assets/Reddit_logo.png';
+import redditAvatar from '../../assets/redditAvatar.svg';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -47,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     display: 'flex',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "#F6F7F8",
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
@@ -127,6 +130,37 @@ const useStyles = makeStyles((theme) => ({
   mainContainer: {
     justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  redditLogoWrapper: {
+    margin: '0 10% 0 0',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  userMenu : {
+    width: '150px',
+    borderRadius: '5px',
+    height: '41px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: 0,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+      border: '1px solid gainsboro',
+    },
+  },
+  tiny: {
+    fontSize: '.75rem',
+    fontWeight: 500,
+    margin: 0,
+   },
+  tiny2: {
+    color: '#a8aaab',
+    fontSize: '.75rem',
+    margin: 0,
+  },
+  tinyWrapper: {
+    display: 'flex',
+    flexDirection: 'column'
   }
 }));
 
@@ -218,7 +252,7 @@ const  Nav = () => {
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
               <Grid item md={2} className={classes.gridPost}>
-                  <Grid className={classes.gridItem}>
+                  <Grid className={classes.redditLogoWrapper}>
                       <IconButton
                       edge="start"
                       className={classes.iconButton}
@@ -226,6 +260,7 @@ const  Nav = () => {
                       >
                       <RedditIcon fontSize='large' color='primary' />
                       </IconButton>
+                      <img src={RedditLogo} alt='spelled out reddit logo' />
                   </Grid>
                   <Grid>
                       <IconButton
@@ -309,6 +344,7 @@ const  Nav = () => {
 
               <Grid item md={1}>
                 <IconButton
+                    className={classes.userMenu}
                     edge="end"
                     aria-label="account of current user"
                     aria-controls={menuId}
@@ -316,7 +352,13 @@ const  Nav = () => {
                     onClick={handleProfileMenuOpen}
                     color="inherit"
                 >
-                    <AccountCircle />
+                    <img src={redditAvatar} alt='reddit user avatar' />
+                    <div className={classes.tinyWrapper}>
+                      <p className={classes.tiny}>leslielife</p>
+                      <p className={classes.tiny2}>1 karma</p>
+                    </div>
+
+                    <ArrowDropDownIcon />
                 </IconButton>
               </Grid>
 
