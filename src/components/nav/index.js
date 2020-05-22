@@ -28,8 +28,10 @@ import FiberPinIcon from '@material-ui/icons/FiberPin';
 import SmsRoundedIcon from '@material-ui/icons/SmsRounded';
 import CopyrightRoundedIcon from '@material-ui/icons/CopyrightRounded';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import SettingsIcon from '@material-ui/icons/Settings';
 import RedditLogo from '../../assets/Reddit_logo.png';
 import redditAvatar from '../../assets/redditAvatar.svg';
+import karma from '../../assets/karma.svg';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -161,6 +163,11 @@ const useStyles = makeStyles((theme) => ({
   tinyWrapper: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  karma: {
+    width: 12,
+    margin: 2,
+    verticalAlign: 'bottom'
   }
 }));
 
@@ -200,8 +207,25 @@ const  Nav = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>My Profile</p>
+      </MenuItem>      
+      <MenuItem>
+        <IconButton
+          color="inherit"
+        >
+          <SettingsIcon />
+        </IconButton>
+        <p>User Settings</p>
+      </MenuItem> 
     </Menu>
   );
 
@@ -355,7 +379,10 @@ const  Nav = () => {
                     <img src={redditAvatar} alt='reddit user avatar' />
                     <div className={classes.tinyWrapper}>
                       <p className={classes.tiny}>leslielife</p>
-                      <p className={classes.tiny2}>1 karma</p>
+                      <p className={classes.tiny2}>
+                        <img src={karma} className={classes.karma} />
+                        1 karma
+                      </p>
                     </div>
 
                     <ArrowDropDownIcon />
