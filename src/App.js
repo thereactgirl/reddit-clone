@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from './components/nav';
+import Posts from './components/posts';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Nav />
+      <Posts />
     </ThemeProvider>
   );
 }
