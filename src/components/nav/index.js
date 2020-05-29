@@ -272,7 +272,7 @@ const  Nav = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color='light'>
+      <AppBar position="static" color='#fff'>
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
               <Grid item md={2} className={classes.gridPost}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
 //material ui
@@ -8,74 +8,37 @@ import {
     IconButton
 } from '@material-ui/core';
 
-import redditAvatar from '../../assets/redditAvatar.svg';
-import ImageIcon from '@material-ui/icons/Image';
-import AddBoxIcon from '@material-ui/icons/AddBox';
+//components
+import Post from "./Post";
+import CreatePost from './CreatePost';
+
+// import data 
+import dummyData from '../../dummy-data.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-      marginTop: '15px',
-    //   textAlign: 'center',
-  },
-  createPostContainer: {
-      background: '#fff',
-      width: '50%',
-      display: 'flex',
-      padding: 10,
-      alignItems: 'center'
-  },
-  avatar: {
-      borderRadius: '50%',
-      margin: '10px',
-  },
-  inputRoot: {
-    color: 'inherit',
-    background: '#F6F7F8',
-    height: '40px',
-    width: '70%',
-    margin: '0 5px'
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-  icon: {
-      color: 'grey',
-    //   margin: '0 15px'
+    marginTop: 15,
+    maxWidth: '1120px',
   }
 }))
 
 const Posts = () => {
-    const classes = useStyles();
-
-    return (
-        <Container className={classes.container}>
-            <div className={classes.createPostContainer}> 
-                <img className={classes.avatar} src={redditAvatar} alt='reddit user avatar' />
-                <InputBase
-                  placeholder="Create new post"
-                  classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-                <IconButton>
-                    <ImageIcon fontSize={'large'} className={classes.icon} />
-                </IconButton>
-                <IconButton>
-                    <AddBoxIcon fontSize={'large'} className={classes.icon} />
-                </IconButton>
-            </div>
-
-        </Container>
-    
-    );
-}
+  const classes = useStyles();
+  const [posts, setPosts] = useState(dummyData);
+  
+  console.log('posts', posts)
+  return (
+    <Container 
+      classes={{
+        root: classes.container
+      }}
+    >
+    <CreatePost />
+      {
+        posts.map((post) => <Post key={post.timestamp} post={post} />)
+      }
+    </Container>
+  );
+};
 
 export default Posts;
