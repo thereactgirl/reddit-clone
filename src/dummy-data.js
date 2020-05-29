@@ -1,5 +1,6 @@
 const dummyData = [
     {
+        id: 1,
         username: "roastedLove",
         description: "I once worked for a deli and I actually really miss it. I wanted to own my deli someday. What does it take to get there, legally and financially?",
         thumbnailUrl: 'https://i.ibb.co/JkMLHbn/cafe-coffee-cup-tea-wall-decal-coffee-thumbnail.png',
@@ -23,6 +24,7 @@ const dummyData = [
         ]
     },
     {
+        id: 2,
         username: "twitch",
         description: "Tonight's live stream is all about action figures!",
         thumbnailUrl: 'https://icon2.cleanpng.com/20180320/sqe/kisspng-twitch-computer-icons-streaming-media-youtube-live-tv-twitch-icon-5ab19172461392.001176751521586546287.jpg',

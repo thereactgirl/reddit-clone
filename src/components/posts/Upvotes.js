@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
 //icons
 import upvote from '../../assets/upvote.svg';
 import downvote from '../../assets/downvote.svg';
-import CommentIcon from '@material-ui/icons/Comment';
 
 const useStyles = makeStyles((theme) => ({
     voteSectionWrapper: {
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
 
-const Upvotes = ({votes}) => {
+const Upvotes = ({voteCount, upvotePost, downvotePost, postId}) => {
   const classes = useStyles();
   return (
     <div className={classes.voteSectionWrapper}>
@@ -34,9 +33,9 @@ const Upvotes = ({votes}) => {
         className={classes.voteSection}
       >
         <div>
-          <img className={classes.vote} src={upvote} alt='upvote' />
-          <p className={classes.voteNumber}>{votes}</p>
-          <img className={classes.vote} src={downvote} alt='downvote' />
+          <img className={classes.vote} src={upvote} alt='upvote' onClick={() => upvotePost(postId)}/>
+          <p className={classes.voteNumber}>{voteCount}</p>
+          <img className={classes.vote} src={downvote} alt='downvote' onClick={() => downvotePost(postId)}/>
         </div>
       </div>
     </div>

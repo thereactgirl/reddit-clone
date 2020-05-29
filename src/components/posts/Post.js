@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {connect } from 'react-redux';
+import upvote from '../../redux/actions';
 
 //components
 import Comments from "../comments";
@@ -6,6 +8,7 @@ import Upvotes from "./Upvotes";
 import PostHeader from "./PostHeader";
 
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,17 +36,21 @@ const useStyles = makeStyles((theme) => ({
     },
     post: {
       padding: 5,
+    },
+    description: {
+      margin: '10px 0'
     }
   }))
 
 
-const Post = ({ post }) => {
+const Post = ({ post, upvotePost, downvotePost, voteCount }) => {
   const classes = useStyles();
-  const [votes, setVotes] = useState(post.votes);
+  
+
 
   return (
     <div className={classes.postBorder}>
-      <Upvotes votes={votes} />
+      <Upvotes voteCount={voteCount} downvotePost={downvotePost} upvotePost={upvotePost} postId={post.id} />
       <div className={classes.post}>
         <PostHeader
           className={classes.header}
@@ -53,7 +60,7 @@ const Post = ({ post }) => {
           }
           post={post}
         />
-        <div>{post.description}</div>
+        <Typography variant={'body1'} className={classes.description}>{post.description}</Typography>
         <div className={classes.imgBorder}>
           <img
             alt="post thumbnail"
@@ -71,4 +78,13 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+const mapStateToProps = state => {
+  return {
+    // userVoted: state.userVoted,
+  }
+}
+
+const mapDispatchToProps =  {
+  upvote
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
