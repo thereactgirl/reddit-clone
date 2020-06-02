@@ -1,6 +1,6 @@
 
 # Reddit Clone
-As I continue my full stack journey I decided to build something just for fun that would give me the chance to showcase my front end skills. I chose to rebuild the Reddit site because it has many desirable web app features like posts, comments, upvotes, threading, and sharing to social media. Also, Reddit is cool!
+This is a personal project for practice with all things front-end. I chose to rebuild the Reddit site because it has many common web app features like posts, comments, upvotes, and comment threading. Also, Reddit is cool!
 
 ## Getting Started
 
