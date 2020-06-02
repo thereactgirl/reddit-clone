@@ -5,7 +5,7 @@ import actions from "../../redux/actions";
 import upvote from '../../redux/actions';
 import selectPost from '../../redux/actions';
 
-import {useParams} from 'react-router-dom';
+import {useParams, useLocation} from 'react-router-dom';
 
 //Material ui
 import { Container, Typography } from '@material-ui/core';
@@ -54,6 +54,7 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
   const classes = useStyles();
 
   let params = useParams();
+  let location = useLocation();
   post = selectedPost ? selectedPost : post;
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
     <Container>
     {post ?
     <div className={classes.postBorder}>
-      <Upvotes voteCount={post.votes} post={post} postId={post.id} index={index} />
+      {!match ? <Upvotes voteCount={post.votes} post={post} postId={post.id} index={index} /> : <Upvotes voteCount={post.votes} post={post} postId={post.id} index={location && location.state && location.state.index} /> }
       <div className={classes.post}>
         <PostHeader
           className={classes.header}
@@ -88,6 +89,7 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
           postId={post.id}
           postComments={post.comments}
           match={match}
+          index={index}
         />
       </div>
     </div>

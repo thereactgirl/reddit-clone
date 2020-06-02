@@ -13,6 +13,7 @@ const fetchData = () => {
 }
 
 const updateVoteCount = (postId, newVotes) => {
+    console.log(postId, newVotes)
     return { type: UPVOTE_POST, payload: [postId, newVotes] }
 }
 

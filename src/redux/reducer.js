@@ -42,7 +42,7 @@ const defaultState = {
                         },
                         {
                             id: 4,
-                            parentId: 1010,
+                            parentId: 1,
                             username: "michaelmarzetta",
                             text: "Omg no help at all lol"
                         },
@@ -136,9 +136,7 @@ export default (state = defaultState, action) => {
         case UPVOTE_POST: {
             let post = state.posts.find((post) => post.id == action.payload[0])
             // post = {...state, votes: action.newVotes}
-          
-            console.log('post', post)
-            
+                    
             return {
                 ...state,
                 post:   post.votes = action.payload[1]

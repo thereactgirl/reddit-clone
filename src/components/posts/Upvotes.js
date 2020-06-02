@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import { useLocation } from 'react-router-dom';
 
 //redux
 import actions from '../../redux/actions';
@@ -33,6 +34,11 @@ const Upvotes = ({posts, postId, updateVoteCount, post, userVotedState, index}) 
   const classes = useStyles();
   const [userVoted, setUserVoted] = useState(userVotedState);
   const [voteCount, setVoteCount] = useState([]);
+
+  let location = useLocation();
+
+  console.log(location)
+  index = (typeof index === undefined) ?  location.state.index : index
 
   useEffect(() => {
     // return fetchData;

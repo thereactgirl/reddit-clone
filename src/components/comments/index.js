@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
 
-const Comments = ({ postId, postComments, match }) => {
+const Comments = ({ postId, postComments, match, index }) => {
   const classes = useStyles();
 
   const [comments, setComments] = useState([postComments]);
@@ -34,7 +34,8 @@ const Comments = ({ postId, postComments, match }) => {
     <div className={classes.commentContainer}>
       {
       !match ? 
-      (<Link to={`/post/${postId}`} className={classes.commentsInfo}>
+      (<Link 
+        to= {{ pathname: `/post/${postId}`, state: {index: index} }} className={classes.commentsInfo}>
         <CommentIcon /> 
         <Typography>
           {postComments.length} comments
