@@ -1,8 +1,11 @@
 import {
-    FETCH_DATA, UPVOTE_POST
+    FETCH_DATA, 
+    UPVOTE_POST,
+    SELECT_POST
 } from './types';
 import dummyData from '../dummy-data';
 import { act } from 'react-dom/test-utils';
+import actions from './actions';
 console.log(dummyData)
 
 const defaultState = {
@@ -17,15 +20,42 @@ const defaultState = {
             timestamp: "July 17th 2017, 12:42:40 pm",
             comments: [
                 {
+                    id: 1,
+                    postId: 1,
                     username: "biancasaurus",
-                    text: "For starters, the shop, the meat, and the all equipment for storage and whatnot."
+                    text: "For starters, the shop, the meat, and the all equipment for storage and whatnot.",
+                    comments: [
+                        {
+                            username: "twitch",
+                            text: "Thanks captain obvious",
+                            comments: [ 
+                                {
+                                username: "dennis_futbol",
+                                text: "Right lol"
+                                }
+                            ]
+                        },
+                        {
+                            username: "michaelmarzetta",
+                            text: "Omg no help at all lol"
+                        },
+                        {
+                            username: "themexican_leprechaun",
+                            text: "Can you be more specific regarding equipment"
+                        },
+                       
+                    ],
                 },
                 {
+                    id: 2,
+                    postId: 1,
                     username: "roastedLove",
                     text: "Besides the actual property and equipment, I mean..."
                 },
                
                 {
+                    id: 3,
+                    postId: 1,
                     username: "martinseludo",
                     text: "Lots of permits!"
                 }
@@ -60,7 +90,16 @@ const defaultState = {
         }
     ],
     userVoted: [],
-    post: null,
+    selectedPost: {
+        id: '',
+        username: '',
+        description: '',
+        thumbnailUrl: '',
+        imageUrl: '',
+        votes: null,
+        timestamp: '',
+        comments: []
+    },
     userPhoto:
       "http://fangmarks.com/wp-content/uploads/2013/05/instagram-fangmarks-may-10.jpg"
 };
@@ -78,15 +117,25 @@ export default (state = defaultState, action) => {
             };
         };
         case UPVOTE_POST: {
-            let post = state.posts.map((p)=> p.id === action.payload.postId);
-            if(post) {
-                return {
-                    ...state,
-                    votes: action.payload
-                }
+            let post = state.posts.find((post) => post.id == action.payload[0])
+            // post = {...state, votes: action.newVotes}
+          
+            console.log('post', post)
+            
+            return {
+                ...state,
+                post:   post.votes = action.payload[1]
+                // selectedPost: {...post},
+                // posts: [...state.posts]
+            }
+            
+        }
+        case SELECT_POST: {
+            return {
+                ...state,
+                selectedPost: action.payload
             }
         }
-
         default: 
             return state;
     }

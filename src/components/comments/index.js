@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CreateComment from "./CreateComment";
 import Comment from "./Comment";
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 // icons
 import CommentIcon from '@material-ui/icons/Comment';
@@ -24,23 +25,34 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
 
-const Comments = ({ postId, postComments }) => {
+const Comments = ({ postId, postComments, match }) => {
   const classes = useStyles();
 
   const [comments, setComments] = useState([postComments]);
     
   return (
     <div className={classes.commentContainer}>
-      {/* {
-      postComments.map((comment) => <Comment key={comment.postId} comment={comment} />)
-      }  */}
+      {
+      !match ? 
+      (<Link to={`/post/${postId}`} className={classes.commentsInfo}>
+        <CommentIcon /> 
+        <Typography>
+          {postComments.length} comments
+        </Typography>
+      </Link>)
+    : (
       <div className={classes.commentsInfo}>
         <CommentIcon /> 
         <Typography>
           {postComments.length} comments
         </Typography>
       </div>
-      <CreateComment />
+    )}
+
+    {
+      match && postComments.map((comment) => <Comment key={comment.postId} comment={comment} />)
+    } 
+   {match && <CreateComment /> }
     </div>
   );
 };

@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import {connect } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 import upvote from '../../redux/actions';
+import selectPost from '../../redux/actions';
+import {useParams} from 'react-router-dom';
 
 //components
-import Comments from "../comments";
-import Upvotes from "./Upvotes";
-import PostHeader from "./PostHeader";
+import Comments from "../../components/comments";
+import Upvotes from "../../components/posts/Upvotes";
+import PostHeader from "../../components/posts/PostHeader";
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from "@material-ui/core";
+import actions from "../../redux/actions";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,14 +46,22 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 
-const Post = ({ post, upvotePost, downvotePost, voteCount }) => {
+const Post = ({ post, postId, selectPost, selectedPost, match }) => {
   const classes = useStyles();
-  
 
+  let params = useParams();
+  post = selectedPost ? selectedPost : post;
+
+  useEffect(() => {
+    console.log(params.id)
+    selectPost(params.id)
+  }, [])
 
   return (
+    <>
+    {post ?
     <div className={classes.postBorder}>
-      <Upvotes voteCount={voteCount} downvotePost={downvotePost} upvotePost={upvotePost} postId={post.id} />
+      <Upvotes voteCount={post.votes} post={post} postId={post.id} />
       <div className={classes.post}>
         <PostHeader
           className={classes.header}
@@ -70,21 +81,24 @@ const Post = ({ post, upvotePost, downvotePost, voteCount }) => {
         </div>
 
         <Comments
-          postId={post.imageUrl}
+          postId={post.id}
           postComments={post.comments}
+          match={match}
         />
       </div>
     </div>
+    : null}
+    </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    // userVoted: state.userVoted,
+      selectedPost: state.selectedPost
   }
 }
 
 const mapDispatchToProps =  {
-  upvote
+  selectPost: actions.selectPost
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
