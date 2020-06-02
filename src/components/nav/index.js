@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
+import { Link, useHistory } from 'react-router-dom';
+
 import {
     AppBar,
     Badge,
@@ -173,6 +175,7 @@ const useStyles = makeStyles((theme) => ({
 
 const  Nav = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -281,6 +284,9 @@ const  Nav = () => {
                       edge="start"
                       className={classes.iconButton}
                       aria-label="reddit logo"
+                      onClick={() => {
+                        history.push('/')
+                      }}
                       >
                       <RedditIcon fontSize='large' color='primary' />
                       </IconButton>

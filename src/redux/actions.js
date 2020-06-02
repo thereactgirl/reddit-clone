@@ -1,7 +1,8 @@
 import {
     FETCH_DATA,
     UPVOTE_POST,
-    SELECT_POST
+    SELECT_POST,
+    ADD_COMMENT
 } from './types'
 
 import dummyData from '../dummy-data';
@@ -26,8 +27,15 @@ const selectPost = (postId) => async (dispatch, getState) => {
 const findPost = (post) => (getState, dispatch) => {
     return { type: SELECT_POST, payload: post}
 }
+
+const createComment = (comment) => {
+    console.log(comment)
+    return {type: ADD_COMMENT, payload: comment}
+}
+
 export default {
     fetchData,
     updateVoteCount,
-    selectPost
+    selectPost,
+    createComment
 };

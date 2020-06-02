@@ -8,6 +8,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 
 //components 
 import Reply from './Reply';
+import CreateComment from './CreateComment';
 
 const useStyles = makeStyles((theme) => ({
   commentWrapper: {
@@ -15,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
-    margin: 10
+    margin: 5
   },
   username: {
     fontWeight: 700,
     marginBottom: 5
   },
   voteSectionWrapper: {
-    width: 30,
+    width: 20,
     backgroundColor: "#F6F7F8",
   },
   voteSection: {
@@ -35,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   vote: {
     width: 12,
     margin: '5px 0'
-    // margin: '20px 15px'
   },
   voteNumber: {
     fontSize: '12px',
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     color: theme.palette.primary.dark,
-    margin: 10,
+    marginTop: 5,
   },
   threadLine: {
     borderRight: '2px solid grey',
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 2.5,
   },
   commentThreadWrapper: {
-    margin: '0  0 15px 0',
+    margin: '0  0 10px 0',
   },
   commentText: {
     display: 'flex',
@@ -97,12 +97,11 @@ const Comment = ({ comment }) => {
           <span className={classes.comment}>{comment.text}</span>
         </div>
         <div className={classes.reply}>
-          <CommentIcon fontSize='12px'/>
-          <span>Reply</span>
+          <CreateComment parentId={comment.id} />
         </div>
 
         <div>
-        {comment && comment.comments && comment.comments.length && comment.comments.map((comment) => <Reply key={comment.postId} comment={comment} />)}
+        {comment && comment.comments && comment.comments.length && comment.comments.map((comment) => <Comment key={comment.postId} comment={comment} />)}
         </div>
         
       </div>

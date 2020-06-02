@@ -35,7 +35,7 @@ const Posts = ({posts, updateVoteCount}) => {
     >
     <CreatePost />
       {
-        posts && posts.map((post, index) => <Post key={post.id} post={post} />)
+        posts && posts.map((post, index) => <Post key={post.id} post={post} index={index} />)
       }
     </Container>
   );

@@ -29,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
 
-const Upvotes = ({posts, postId, updateVoteCount, post}) => {
+const Upvotes = ({posts, postId, updateVoteCount, post, userVotedState, index}) => {
   const classes = useStyles();
-  const [userVoted, setUserVoted] = useState([]);
+  const [userVoted, setUserVoted] = useState(userVotedState);
   const [voteCount, setVoteCount] = useState([]);
 
   useEffect(() => {
@@ -43,17 +43,16 @@ const Upvotes = ({posts, postId, updateVoteCount, post}) => {
   }, [posts])
 
 
-  const upvotePost = postId => {
-    const indexClicked = postId -  1; 
+  const upvotePost = (index) => {
     const newLikedArr = userVoted && userVoted.map((like, index) => {
-      if (index === indexClicked) {
+      if (index === index) {
         return like ? false : true;
       } else {
         return like;
       }
     });
     setUserVoted(newLikedArr)
-    addUpvote(indexClicked);
+    addUpvote(index);
   };
 
 
@@ -71,17 +70,16 @@ const Upvotes = ({posts, postId, updateVoteCount, post}) => {
     updateVoteCount(postId, newLikesNumArr[indexClicked])
   };
 
-  const downvotePost = postId => {
-    const indexClicked = postId -  1;
-    const newLikedArr = userVoted && userVoted.map((like, index) => {
-      if (index === indexClicked) {
+  const downvotePost = index => {
+    const newLikedArr = userVoted && userVoted.map((like, numIndex) => {
+      if (numIndex  === index) {
         return like ? false : true;
       } else {
         return like;
       }
     });
     setUserVoted(newLikedArr);
-    addDownvote(indexClicked);
+    addDownvote(index);
   };
 
 
@@ -89,14 +87,13 @@ const Upvotes = ({posts, postId, updateVoteCount, post}) => {
     const newLikesNumArr = voteCount.map((likeNums, numIndex) => {
       if (numIndex === indexClicked) {
         return userVoted[numIndex]
-          ? (likeNums -= 1)
-          : (likeNums += 1);
+          ? (likeNums += 1)
+          : (likeNums -= 1);
       } else {
         return likeNums;
       }
     });
     setVoteCount(newLikesNumArr);
-    let postId = indexClicked +1
     updateVoteCount(postId, newLikesNumArr[indexClicked])
   };
 
@@ -106,9 +103,9 @@ const Upvotes = ({posts, postId, updateVoteCount, post}) => {
         className={classes.voteSection}
       >
         <div>
-          <img className={classes.vote} src={upvote} alt='upvote' onClick={() => upvotePost(postId)}/>
+          <img className={classes.vote} src={upvote} alt='upvote' onClick={() => upvotePost(index)}/>
           <p className={classes.voteNumber}>{post && post.votes}</p>
-          <img className={classes.vote} src={downvote} alt='downvote' onClick={() => downvotePost(postId)}/>
+          <img className={classes.vote} src={downvote} alt='downvote' onClick={() => downvotePost(index)}/>
         </div>
       </div>
     </div>
@@ -118,6 +115,7 @@ const Upvotes = ({posts, postId, updateVoteCount, post}) => {
 
 const mapStateToProps = state => {
   return {
+      userVotedState: state.userVoted,
       posts: state.posts
   }
 }

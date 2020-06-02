@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
+//redux
 import { connect } from 'react-redux';
+import actions from "../../redux/actions";
 import upvote from '../../redux/actions';
 import selectPost from '../../redux/actions';
+
 import {useParams} from 'react-router-dom';
+
+//Material ui
+import { Container, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 //components
 import Comments from "../../components/comments";
 import Upvotes from "../../components/posts/Upvotes";
 import PostHeader from "../../components/posts/PostHeader";
-
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from "@material-ui/core";
-import actions from "../../redux/actions";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
       // position: "relative"
     },
     postImage: {
-      width: 590,
+      // width: 590,
+      width: '100%'
     },
     postBorder: {
       display: 'flex',
@@ -46,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 
-const Post = ({ post, postId, selectPost, selectedPost, match }) => {
+const Post = ({ post, index, selectPost, selectedPost, match }) => {
   const classes = useStyles();
 
   let params = useParams();
@@ -58,10 +62,10 @@ const Post = ({ post, postId, selectPost, selectedPost, match }) => {
   }, [])
 
   return (
-    <>
+    <Container>
     {post ?
     <div className={classes.postBorder}>
-      <Upvotes voteCount={post.votes} post={post} postId={post.id} />
+      <Upvotes voteCount={post.votes} post={post} postId={post.id} index={index} />
       <div className={classes.post}>
         <PostHeader
           className={classes.header}
@@ -88,7 +92,7 @@ const Post = ({ post, postId, selectPost, selectedPost, match }) => {
       </div>
     </div>
     : null}
-    </>
+    </Container>
   );
 };
 

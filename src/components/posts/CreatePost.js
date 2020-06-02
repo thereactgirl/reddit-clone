@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 //material ui
 import {
     InputBase,
-    IconButton
+    IconButton,
+    Container
 } from '@material-ui/core';
 
 import redditAvatar from '../../assets/redditAvatar.svg';
@@ -52,24 +53,27 @@ const CreatePost = () => {
     const classes = useStyles();
 
     return (
-            <div className={classes.createPostContainer}> 
-                <img className={classes.avatar} src={redditAvatar} alt='reddit user avatar' />
-                <InputBase
-                  placeholder="Create new post"
-                  classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-                <IconButton>
-                    <ImageIcon fontSize={'large'} className={classes.icon} />
-                </IconButton>
-                <IconButton>
-                    <AddBoxIcon fontSize={'large'} className={classes.icon} />
-                </IconButton>
-            </div>
+      <Container>
+        <div className={classes.createPostContainer}> 
+          <img className={classes.avatar} src={redditAvatar} alt='reddit user avatar' />
+          <InputBase
+            placeholder="Create new post"
+            classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+          <IconButton>
+              <ImageIcon fontSize={'large'} className={classes.icon} />
+          </IconButton>
+          <IconButton>
+              <AddBoxIcon fontSize={'large'} className={classes.icon} />
+          </IconButton>
+        </div>
 
+      </Container>
+           
     
     );
 }

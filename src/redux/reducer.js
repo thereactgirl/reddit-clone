@@ -1,17 +1,18 @@
 import {
     FETCH_DATA, 
     UPVOTE_POST,
-    SELECT_POST
+    SELECT_POST,
+    ADD_COMMENT
 } from './types';
+
 import dummyData from '../dummy-data';
-import { act } from 'react-dom/test-utils';
-import actions from './actions';
+
 console.log(dummyData)
 
 const defaultState = {
     posts: [
         {
-            id: 1,
+            id: 1010,
             username: "roastedLove",
             description: "I once worked for a deli and I actually really miss it. I wanted to own my deli someday. What does it take to get there, legally and financially?",
             thumbnailUrl: 'https://i.ibb.co/JkMLHbn/cafe-coffee-cup-tea-wall-decal-coffee-thumbnail.png',
@@ -21,25 +22,33 @@ const defaultState = {
             comments: [
                 {
                     id: 1,
-                    postId: 1,
+                    parentId: 1010,
                     username: "biancasaurus",
                     text: "For starters, the shop, the meat, and the all equipment for storage and whatnot.",
                     comments: [
                         {
+                            id: 2,
+                            parentId: 1,
                             username: "twitch",
                             text: "Thanks captain obvious",
                             comments: [ 
                                 {
+                                id: 3,
+                                parentId: 2,
                                 username: "dennis_futbol",
                                 text: "Right lol"
                                 }
                             ]
                         },
                         {
+                            id: 4,
+                            parentId: 1010,
                             username: "michaelmarzetta",
                             text: "Omg no help at all lol"
                         },
-                        {
+                        { 
+                            id: 5,
+                            parentId: 1,
                             username: "themexican_leprechaun",
                             text: "Can you be more specific regarding equipment"
                         },
@@ -47,22 +56,22 @@ const defaultState = {
                     ],
                 },
                 {
-                    id: 2,
-                    postId: 1,
+                    id: 6,
+                    parentId: 1010,
                     username: "roastedLove",
                     text: "Besides the actual property and equipment, I mean..."
                 },
                
                 {
-                    id: 3,
-                    postId: 1,
+                    id: 7,
+                    parentId: 1010,
                     username: "martinseludo",
                     text: "Lots of permits!"
                 }
             ]
         },
         {
-            id: 2,
+            id: 2020,
             username: "twitch",
             description: "Tonight's live stream is all about action figures!",
             thumbnailUrl: 'https://icon2.cleanpng.com/20180320/sqe/kisspng-twitch-computer-icons-streaming-media-youtube-live-tv-twitch-icon-5ab19172461392.001176751521586546287.jpg',
@@ -71,18 +80,26 @@ const defaultState = {
             timestamp: "July 15th 2017, 03:12:09 pm",
             comments: [
                 {
+                    id: 8,
+                    parentId: 2020,
                     username: "twitch",
                     text: "Epic Street Fighter action here in Vegas!"
                 },
                 {
+                    id: 9,
+                    parentId: 2020,
                     username: "michaelmarzetta",
                     text: "Omg that match was crazy"
                 },
                 {
+                    id: 10,
+                    parentId: 2020,
                     username: "themexican_leprechaun",
                     text: "What a setup"
                 },
                 {
+                    id: 11,
+                    parentId: 2020,
                     username: "dennis_futbol",
                     text: "It that injustice"
                 }
@@ -134,6 +151,15 @@ export default (state = defaultState, action) => {
             return {
                 ...state,
                 selectedPost: action.payload
+            }
+        }
+        case ADD_COMMENT: {
+            let post = state.posts.find((post) => post.id == action.payload[0])
+            return {
+                ...state,
+                post: {...state, 
+                    comments: [...post.comments, action.payload]
+                }
             }
         }
         default: 

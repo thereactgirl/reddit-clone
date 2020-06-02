@@ -50,9 +50,9 @@ const Comments = ({ postId, postComments, match }) => {
     )}
 
     {
-      match && postComments.map((comment) => <Comment key={comment.postId} comment={comment} />)
+      match && postComments.map((comment) => <Comment key={comment.id} comment={comment} parentId={comment.id} />)
     } 
-   {match && <CreateComment /> }
+   {match && <CreateComment parentId={postId} /> }
     </div>
   );
 };
