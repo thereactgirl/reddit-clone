@@ -153,11 +153,10 @@ export default (state = defaultState, action) => {
         }
         case ADD_COMMENT: {
             let post = state.posts.find((post) => post.id == action.payload[0])
+            post.comments = [...state.selectedPost.comments, action.payload[1]]
             return {
                 ...state,
-                post: {...state, 
-                    comments: [...post.comments, action.payload]
-                }
+               post: post
             }
         }
         default: 

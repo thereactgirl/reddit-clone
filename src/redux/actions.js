@@ -13,7 +13,6 @@ const fetchData = () => {
 }
 
 const updateVoteCount = (postId, newVotes) => {
-    console.log(postId, newVotes)
     return { type: UPVOTE_POST, payload: [postId, newVotes] }
 }
 
@@ -29,9 +28,13 @@ const findPost = (post) => (getState, dispatch) => {
     return { type: SELECT_POST, payload: post}
 }
 
-const createComment = (comment) => {
-    console.log(comment)
-    return {type: ADD_COMMENT, payload: comment}
+const createComment = (parentId, comment) => async (dispatch, getState) => {
+    console.log(parentId, comment)
+    let state = getState();
+
+    const post = await state.posts.find((post) => post.id == parentId);
+    console.log('post', post)
+    dispatch({type: ADD_COMMENT, payload: [parentId, comment]})
 }
 
 export default {

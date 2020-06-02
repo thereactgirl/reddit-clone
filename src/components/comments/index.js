@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CreateComment from "./CreateComment";
 import Comment from "./Comment";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
+//redux
+import actions from '../../redux/actions';
+import { connect } from 'react-redux';
 // icons
 import CommentIcon from '@material-ui/icons/Comment';
 import { Typography } from "@material-ui/core";
@@ -25,11 +27,15 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
 
-const Comments = ({ postId, postComments, match, index }) => {
+const Comments = ({ postId, postComments, match, index, selectedPost }) => {
   const classes = useStyles();
 
   const [comments, setComments] = useState([postComments]);
-    
+
+  useEffect(() => {
+    console.log('render')
+  }, [comments, postComments])
+
   return (
     <div className={classes.commentContainer}>
       {
@@ -58,4 +64,14 @@ const Comments = ({ postId, postComments, match, index }) => {
   );
 };
 
-export default Comments;
+
+const mapStateToProps = state => {
+  return {
+      selectedPost: state.selectedPost
+  }
+}
+
+const mapDispatchToProps =  {
+  // createComment: actions.createComment
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

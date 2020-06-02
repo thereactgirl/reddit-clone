@@ -9,8 +9,9 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 //redux
+//redux
+import actions from '../../redux/actions';
 import { connect } from 'react-redux';
-import actions from "../../redux/actions";
 
 
 //icons
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const CreateComment = (props, createComment) => {
+const CreateComment = ({createComment, parentId, comment}) => {
   const classes = useStyles();
   const [show, setShow] = useState(false);
   const container = useRef(null);
@@ -50,8 +51,9 @@ const CreateComment = (props, createComment) => {
     newComment.parentId = parentId;
     newComment.username = '';
     newComment.text = commentText;
+    console.log("newComment", newComment)
 
-    return createComment(newComment)
+    return createComment(parentId, newComment)
   }
   const changeComment =  (e) => {
     setCommentText(e.target.value)
@@ -61,17 +63,17 @@ const CreateComment = (props, createComment) => {
     <div>
         {show ? (
           <Portal container={container.current}>
-            <form className={classes.root} onSubmit={(e) =>submitComment(e, props.parentId)}>
+            <form className={classes.root} onSubmit={(e) =>submitComment(e, parentId)}>
               <TextareaAutosize
                 type="text"
-                value={props.comment}
+                value={comment}
                 placeholder="Add comment... "
                 rowsMin='5'
                 onChange={changeComment}
                 className={classes.input}
               />
             </form>
-            <Button onClick={(e) => submitComment(e, props.parentId)}>Submit</Button>
+            <Button onClick={(e) => submitComment(e, parentId)}>Submit</Button>
           </Portal>
         ) : null}
       <div className={classes.alert} ref={container} />

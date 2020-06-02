@@ -62,6 +62,7 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
     selectPost(params.id)
   }, [])
 
+
   return (
     <Container>
     {post ?
