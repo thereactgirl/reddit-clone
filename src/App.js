@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Nav from './components/nav';
 import Posts from './components/posts';
+import Login from './screens/Login';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
@@ -19,14 +20,18 @@ const theme = createMuiTheme({
       light: '#FFFFFF',
     },
     secondary: {
-      main: '#4392DB'
+      main: '#4392DB',
+      light: '#E8F0FE'
     }
 
   },
   status: {
     danger: 'orange',
   },
-  
+  typography: {
+    fontFamily: 'IBMPlexSans,sans-serif',
+    
+  }
 });
 const store = createStore(
   reducer, /* preloadedState, */
@@ -38,10 +43,13 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route path='/post/:id' component={Post} />
+          </Switch>
           <Nav />
           {/* <Posts /> */}
-          <Route exact path='/' component={Posts} />
-          <Route path='/post/:id' component={Post} />
+          <Route exact path='/home' component={Posts} />
         </Router>
       </ThemeProvider>
     </Provider>
