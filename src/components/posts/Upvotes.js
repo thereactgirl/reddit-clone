@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
 
 //redux
-import actions from '../../redux/actions';
+import actions from '../../redux/main/actions';
 import {connect} from 'react-redux';
 
 //icons
@@ -121,8 +121,8 @@ const Upvotes = ({posts, postId, updateVoteCount, post, userVotedState, index}) 
 
 const mapStateToProps = state => {
   return {
-      userVotedState: state.userVoted,
-      posts: state.posts
+      userVotedState: state.main.userVoted,
+      posts: state.main.posts
   }
 }
 

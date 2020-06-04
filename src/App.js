@@ -2,58 +2,41 @@ import React, { useState } from 'react';
 import Nav from './components/nav';
 import Posts from './components/posts';
 import Login from './screens/Login';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Provider } from 'react-redux';
-import reducer from './redux/reducer';
-import thunkMiddleware from 'redux-thunk';
-
-import { createStore, applyMiddleware, compose } from 'redux';
 import Post from './components/posts/Post';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#DAE0E6',
-      light: '#FFFFFF',
-    },
-    secondary: {
-      main: '#4392DB',
-      light: '#E8F0FE'
-    }
+// authenticate
+import WithAuth from './authentication/WithAuth';
+//redux
+import { connect } from 'react-redux';
 
-  },
-  status: {
-    danger: 'orange',
-  },
-  typography: {
-    fontFamily: 'IBMPlexSans,sans-serif',
-    
-  }
-});
-const store = createStore(
-  reducer, /* preloadedState, */
-  compose(applyMiddleware(thunkMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-);
 
-const App = () => {
+import { Router, Route, Switch } from 'react-router-dom';
+import history from "./history";
+
+
+
+
+const App = ({auth}) => {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Router>
+        <Router history={history}>
           <Switch>
-            <Route exact path='/' component={Login} />
-            <Route path='/post/:id' component={Post} />
-          </Switch>
+            <Route exact path='/' component={Login} auth={auth} />
           <Nav />
+          </Switch>
+          <Route path='/post/:id' component={Post} />
           {/* <Posts /> */}
-          <Route exact path='/home' component={Posts} />
+          <Route path='/home' component={Posts} />
         </Router>
-      </ThemeProvider>
-    </Provider>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(App);
+// export default WithAuth();
+// export default App;

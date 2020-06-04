@@ -281,12 +281,12 @@ const  Nav = () => {
               <Grid item md={2} className={classes.gridPost}>
                   <Grid className={classes.redditLogoWrapper}>
                       <IconButton
-                      edge="start"
-                      className={classes.iconButton}
-                      aria-label="reddit logo"
-                      onClick={() => {
-                        history.push('/')
-                      }}
+                        edge="start"
+                        className={classes.iconButton}
+                        aria-label="reddit logo"
+                        onClick={() => {
+                          history.push('/home')
+                        }}
                       >
                       <RedditIcon fontSize='large' color='primary' />
                       </IconButton>

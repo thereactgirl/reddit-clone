@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //redux
 //redux
-import actions from '../../redux/actions';
+import actions from '../../redux/main/actions';
 import { connect } from 'react-redux';
 
 
@@ -33,11 +33,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const CreateComment = ({createComment, parentId, comment}) => {
+const CreateComment = ({createComment, parentId, comment, username}) => {
   const classes = useStyles();
   const [show, setShow] = useState(false);
   const container = useRef(null);
   const [commentText, setCommentText] = useState('');
+  console.log('username', username)
 
   const handleClick = () => {
     setShow(!show);
@@ -49,7 +50,7 @@ const CreateComment = ({createComment, parentId, comment}) => {
     let newComment = {};
     newComment.id = Date.now();
     newComment.parentId = parentId;
-    newComment.username = '';
+    newComment.username = username;
     newComment.text = commentText;
     console.log("newComment", newComment)
 
@@ -89,7 +90,8 @@ const CreateComment = ({createComment, parentId, comment}) => {
 
 const mapStateToProps = state => {
   return {
-      selectedPost: state.selectedPost
+      selectedPost: state.main.selectedPost,
+      username: state.auth.username
   }
 }
 

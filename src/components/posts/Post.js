@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 //redux
 import { connect } from 'react-redux';
-import actions from "../../redux/actions";
-import upvote from '../../redux/actions';
-import selectPost from '../../redux/actions';
+import actions from "../../redux/main/actions";
+import upvote from '../../redux/main/actions';
+import selectPost from '../../redux/main/actions';
 
 import {useParams, useLocation} from 'react-router-dom';
 
@@ -101,7 +101,7 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
 
 const mapStateToProps = state => {
   return {
-      selectedPost: state.selectedPost
+      selectedPost: state.main.selectedPost
   }
 }
 

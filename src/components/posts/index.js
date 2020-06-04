@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //redux 
 import { connect } from 'react-redux';
-import updateVoteCount from '../../redux/actions';
 
 //material ui
 import {
@@ -15,7 +14,7 @@ import {
 //components
 import Post from "./Post";
 import CreatePost from './CreatePost';
-import actions from "../../redux/actions";
+import actions from "../../redux/main/actions";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,7 +42,7 @@ const Posts = ({posts, updateVoteCount}) => {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts,
+    posts: state.main.posts,
     // userLiked: state.userVoted
   }
 }

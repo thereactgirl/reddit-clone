@@ -5,7 +5,7 @@ import {
     ADD_COMMENT
 } from './types';
 
-import dummyData from '../dummy-data';
+import dummyData from '../../dummy-data';
 
 console.log(dummyData)
 

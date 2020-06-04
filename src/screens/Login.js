@@ -3,6 +3,8 @@ import { makeStyles, fade } from "@material-ui/core/styles";
 
 //redux
 import { connect } from "react-redux";
+import actions from '../redux/auth/actions';
+
 
 //material ui
 import { Grid, Button, Typography, TextField } from "@material-ui/core";
@@ -99,7 +101,7 @@ const useStylesReddit = makeStyles((theme) => ({
     },
   },
   focused: {},
-  label: {
+  input: {
     fontSize: "12px",
     fontWeight: "600",
     display: "inline-block",
@@ -118,14 +120,36 @@ function RedditTextField(props) {
   return (
     <TextField
       InputProps={{ classes, disableUnderline: true }}
-      InputLabelProps={{ className: classes.label }}
+      InputLabelProps={{ className: classes.input }}
       {...props}
     />
   );
 }
 
-const Login = () => {
+const Login = ({ doLogin, doLogout }) => {
   const classes = useStyles();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+ const handleChange = event => {
+    if (event.target.name === "username") {
+        setUsername(event.target.value)
+    } else if (event.target.name === "password") {
+        setPassword(event.target.value)
+    }
+  };
+
+  const onLogin = e => {
+    // const { username } = this.state;
+    localStorage.setItem("username", username);
+
+    e.preventDefault();
+    doLogin(username);
+    // this.setState({ username: "" });
+  };
+
+  // const onLogout = () => this.props.doLogout();
+
   return (
     <div className={classes.pageColumns}>
       <div className={clsx(classes.column, classes.leftColumn)}>
@@ -133,7 +157,7 @@ const Login = () => {
       </div>
       <div className={clsx(classes.column, classes.rightColumn)}>
         <div className={classes.formContainer}>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={onLogin}>
             <div className={classes.redditCircle}>
               <RedditIcon fontSize="large" style={{ color: "#fff" }} />
             </div>
@@ -141,22 +165,30 @@ const Login = () => {
               Sign in
             </Typography>
             <RedditTextField
+              name='username'
+              value={username}
               label="USERNAME"
               className={classes.margin}
               variant="filled"
               color="secondary"
               id="username-input"
+              onChange={handleChange}
             />
             <RedditTextField
+              name='password'
+              value={password}
               label="PASSWORD"
               className={classes.margin}
               variant="filled"
               color="secondary"
               id="password-input"
+              onChange={handleChange}
+
             />
             <div className={classes.btnContainer}>
               <Button
                 variant="contained"
+                type="submit"
                 color="secondary"
                 className={classes.btn}
               >
@@ -169,7 +201,11 @@ const Login = () => {
     </div>
   );
 };
-// const mapDispatchToProps =  {
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Posts);
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+const mapDispatchToProps =  {
+  doLogin: actions.doLogin, 
+  doLogout: actions.doLogout 
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

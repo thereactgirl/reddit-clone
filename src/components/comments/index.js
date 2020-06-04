@@ -4,7 +4,7 @@ import Comment from "./Comment";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 //redux
-import actions from '../../redux/actions';
+import actions from '../../redux/main/actions';
 import { connect } from 'react-redux';
 // icons
 import CommentIcon from '@material-ui/icons/Comment';
@@ -67,11 +67,11 @@ const Comments = ({ postId, postComments, match, index, selectedPost }) => {
 
 const mapStateToProps = state => {
   return {
-      selectedPost: state.selectedPost
+      selectedPost: state.main.selectedPost
   }
 }
 
 const mapDispatchToProps =  {
-  // createComment: actions.createComment
+  createComment: actions.createComment
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);
