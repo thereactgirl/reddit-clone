@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 
-const Post = ({ post, index, selectPost, selectedPost, match }) => {
+const Post = ({ post, index, selectPost, selectedPost, match, reloadData, posts }) => {
   const classes = useStyles();
 
   let params = useParams();
@@ -60,8 +60,13 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
   useEffect(() => {
     console.log(params.id)
     selectPost(params.id)
+    // reloadData();
   }, [])
 
+  useEffect(() => {
+
+    reloadData();
+  }, [selectedPost])
 
   return (
     <Container>
@@ -101,11 +106,13 @@ const Post = ({ post, index, selectPost, selectedPost, match }) => {
 
 const mapStateToProps = state => {
   return {
-      selectedPost: state.main.selectedPost
+      selectedPost: state.main.selectedPost,
+      posts: state.main.posts
   }
 }
 
 const mapDispatchToProps =  {
-  selectPost: actions.selectPost
+  selectPost: actions.selectPost,
+  reloadData: actions.reloadData,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

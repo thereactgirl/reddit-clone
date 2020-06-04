@@ -1,9 +1,9 @@
 import * as types from "./types";
 
 const initialState = {
-  username: "",
+  username: (localStorage.getItem('username') ? localStorage.getItem('username') : ''),
   password: "",
-  isLoggedIn: false
+  isLoggedIn: (localStorage.getItem('username') ? true : false)
 };
 
 const authReducer = (state = initialState, action) => {

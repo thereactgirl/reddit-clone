@@ -33,13 +33,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const CreateComment = ({createComment, parentId, comment, username}) => {
+const CreateComment = ({createComment, parentId, postId, comment, username, createSubComment}) => {
   const classes = useStyles();
   const [show, setShow] = useState(false);
   const container = useRef(null);
   const [commentText, setCommentText] = useState('');
-  console.log('username', username)
-
+ 
   const handleClick = () => {
     setShow(!show);
   };
@@ -49,10 +48,16 @@ const CreateComment = ({createComment, parentId, comment, username}) => {
     console.log(parentId)
     let newComment = {};
     newComment.id = Date.now();
+    newComment.postId = postId; 
     newComment.parentId = parentId;
     newComment.username = username;
     newComment.text = commentText;
-    console.log("newComment", newComment)
+    newComment.comments = [];
+    if (parentId !== postId) {
+      setCommentText('');
+      setShow(false);
+      return createSubComment(postId, parentId, newComment)
+    }
 
     return createComment(parentId, newComment)
   }
@@ -96,6 +101,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps =  {
-  createComment: actions.createComment
+  createComment: actions.createComment,
+  createSubComment: actions.createSubComment
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateComment);

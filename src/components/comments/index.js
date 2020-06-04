@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Comments = ({ postId, postComments, match, index, selectedPost }) => {
   const classes = useStyles();
-
+console.log('posfcc', postComments)
   const [comments, setComments] = useState([postComments]);
 
   useEffect(() => {
     console.log('render')
-  }, [comments, postComments])
+  }, [postComments])
 
   return (
     <div className={classes.commentContainer}>
@@ -57,9 +57,9 @@ const Comments = ({ postId, postComments, match, index, selectedPost }) => {
     )}
 
     {
-      match && postComments.map((comment) => <Comment key={comment.id} comment={comment} parentId={comment.id} />)
+      match && postComments.length &&  postComments.map((comment) => <Comment key={`${comment.postId}-${comment.parentId}-${comment.id}`} comment={comment} parentId={comment.id} postId={postId}  />)
     } 
-   {match && <CreateComment parentId={postId} /> }
+   {match && <CreateComment parentId={postId} postId={postId} /> }
     </div>
   );
 };

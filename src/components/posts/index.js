@@ -15,6 +15,7 @@ import {
 import Post from "./Post";
 import CreatePost from './CreatePost';
 import actions from "../../redux/main/actions";
+import auth from '../../redux/auth/actions';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Posts = ({posts, updateVoteCount}) => {
+const Posts = ({posts, updateVoteCount, reloadData}) => {
   const classes = useStyles();
  
   return (
@@ -48,6 +49,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps =  {
-  updateVoteCount: actions.updateVoteCount
+  updateVoteCount: actions.updateVoteCount,
+  reloadData: actions.reloadData,
+
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

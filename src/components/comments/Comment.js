@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   }
   }))
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, postId }) => {
   const classes = useStyles();
 
   return (
@@ -97,12 +97,12 @@ const Comment = ({ comment }) => {
           <span className={classes.comment}>{comment.text}</span>
         </div>
         <div className={classes.reply}>
-          <CreateComment parentId={comment.id} />
+          <CreateComment parentId={comment.id} postId={postId} />
         </div>
 
-        <div>
-        {comment && comment.comments && comment.comments.length && comment.comments.map((comment) => <Comment key={comment.postId} comment={comment} />)}
-        </div>
+        {/* <div> */}
+        {comment && comment.comments && comment.comments.length > 0 && comment.comments.map((comment) => <Comment key={`${comment.postId}-${comment.parentId}-${comment.id}`}  comment={comment} postId={postId} />)}
+        {/* </div> */}
         
       </div>
     </div>

@@ -2,7 +2,8 @@ import {
     FETCH_DATA, 
     UPVOTE_POST,
     SELECT_POST,
-    ADD_COMMENT
+    ADD_COMMENT,
+    ADD_SUB_COMMENT
 } from './types';
 
 import dummyData from '../../dummy-data';
@@ -22,12 +23,14 @@ const defaultState = {
             comments: [
                 {
                     id: 1,
+                    postId: 1010,
                     parentId: 1010,
                     username: "biancasaurus",
                     text: "For starters, the shop, the meat, and the all equipment for storage and whatnot.",
                     comments: [
                         {
                             id: 2,
+                            postId: 1010,
                             parentId: 1,
                             username: "twitch",
                             text: "Thanks captain obvious",
@@ -35,38 +38,48 @@ const defaultState = {
                                 {
                                 id: 3,
                                 parentId: 2,
+                                postId: 1010,
                                 username: "dennis_futbol",
-                                text: "Right lol"
+                                text: "Right lol",
+                                comments: []
                                 }
                             ]
                         },
                         {
                             id: 4,
+                            postId: 1010,
                             parentId: 1,
                             username: "michaelmarzetta",
-                            text: "Omg no help at all lol"
+                            text: "Omg no help at all lol",
+                            comments: []
                         },
                         { 
                             id: 5,
+                            postId: 1010,
                             parentId: 1,
                             username: "themexican_leprechaun",
-                            text: "Can you be more specific regarding equipment"
+                            text: "Can you be more specific regarding equipment",
+                            comments: []
                         },
                        
                     ],
                 },
                 {
                     id: 6,
+                    postId: 1010,
                     parentId: 1010,
                     username: "roastedLove",
-                    text: "Besides the actual property and equipment, I mean..."
+                    text: "Besides the actual property and equipment, I mean...",
+                    comments: []
                 },
                
                 {
                     id: 7,
                     parentId: 1010,
+                    postId: 1010,
                     username: "martinseludo",
-                    text: "Lots of permits!"
+                    text: "Lots of permits!",
+                    comments: []
                 }
             ]
         },
@@ -81,27 +94,34 @@ const defaultState = {
             comments: [
                 {
                     id: 8,
+                    postId: 2020,
                     parentId: 2020,
                     username: "twitch",
-                    text: "Epic Street Fighter action here in Vegas!"
+                    text: "Epic Street Fighter action here in Vegas!",
+                    comments: [],
                 },
                 {
                     id: 9,
+                    postId: 2020,
                     parentId: 2020,
                     username: "michaelmarzetta",
-                    text: "Omg that match was crazy"
+                    text: "Omg that match was crazy",
+                    comments: []
                 },
                 {
                     id: 10,
+                    postId: 2020,
                     parentId: 2020,
                     username: "themexican_leprechaun",
-                    text: "What a setup"
+                    text: "What a setup",
+                    comments: []
                 },
                 {
                     id: 11,
                     parentId: 2020,
                     username: "dennis_futbol",
-                    text: "It that injustice"
+                    text: "It that injustice",
+                    comments: []
                 }
             ]
         }
@@ -156,8 +176,38 @@ export default (state = defaultState, action) => {
             post.comments = [...state.selectedPost.comments, action.payload[1]]
             return {
                 ...state,
+                posts: [...state.posts],
                post: post
             }
+        }
+        case ADD_SUB_COMMENT: {
+            let post = state.posts.find((post) => post.id == action.payload[0])
+            let parentId = action.payload[1];
+            let parent;
+            let findDeep = function(comments, id) {
+                console.log('id', id)
+                return comments.find(function(c) {
+                    if(c.id == id) {
+                        console.log('c', c)
+                        console.log('parentId', parentId)
+                        parent = c;
+                      return parent;
+                    } else if(c.comments)  {
+                        return findDeep(c.comments, id)
+                    };
+                    return parent;
+                })
+              }
+            findDeep(state.posts, parentId)
+            console.log('comment', parent)
+            post.comments = [...state.selectedPost.comments]
+            parent.comments = [...parent.comments, action.payload[2]]
+            return {
+                ...state,
+                posts: [...state.posts],
+                post: post,
+                // parent: parent,
+            }   
         }
         default: 
             return state;
