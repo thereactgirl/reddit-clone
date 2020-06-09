@@ -41,6 +41,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import RedditLogo from '../../assets/Reddit_logo.png';
 import redditAvatar from '../../assets/redditAvatar.svg';
 import karma from '../../assets/karma.svg';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -309,8 +310,9 @@ const  Nav = ({doLogout, username}) => {
       <AppBar position="static" color='inherit'>
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
-              <Grid item sm={1} md={1} lg={4} className={classes.gridPost}>
-                  <Grid className={classes.redditLogoWrapper} onClick={goHome}>
+                 { history.location.pathname !== '/home' ?
+              <Grid item sm={1} md={1} lg={4} className={classes.gridPost} onClick={goHome}>
+                  <Grid className={classes.redditLogoWrapper} >
                       <IconButton
                         edge="start"
                         className={classes.iconButton}
@@ -324,17 +326,45 @@ const  Nav = ({doLogout, username}) => {
                       <IconButton
                           edge="start"
                           className={classes.createPostIcon}
-                          aria-label="create post icon"
+                          aria-label="home"
                           >
-                          <BorderColorIcon color='secondary' />
+                          <HomeIcon color='secondary' />
                       </IconButton>
                   </Grid>
                   <Grid>
                       <Typography className={classes.createPost} variant="h6" noWrap>
-                          Create Post
+                          Home
                       </Typography>
+                  </Grid> 
                   </Grid>
+                  : 
+                  <Grid item sm={1} md={1} lg={4} className={classes.gridPost}>
+                  <Grid className={classes.redditLogoWrapper} >
+                  <IconButton
+                    edge="start"
+                    className={classes.iconButton}
+                    aria-label="reddit logo"
+                  >
+                  <RedditIcon fontSize='large' color='primary' />
+                  </IconButton>
+                  <img className={classes.redditLogo} src={RedditLogo} alt='spelled out reddit logo' />
               </Grid>
+              <Grid>
+                  <IconButton
+                      edge="start"
+                      className={classes.createPostIcon}
+                      aria-label="create post icon"
+                      >
+                      <BorderColorIcon color='secondary' />
+                  </IconButton>
+              </Grid>
+              <Grid>
+                  <Typography className={classes.createPost} variant="h6" noWrap>
+                      Create Post
+                  </Typography>
+              </Grid> 
+              </Grid>
+              }
           
               <Grid item xs={8} sm={5} md={4} lg={6}>
                 <Search />
