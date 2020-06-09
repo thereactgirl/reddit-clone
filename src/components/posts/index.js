@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Posts = ({posts, updateVoteCount, reloadData}) => {
+const Posts = ({posts, filtered}) => {
   const classes = useStyles();
  
 
@@ -37,7 +37,7 @@ const Posts = ({posts, updateVoteCount, reloadData}) => {
     >
     <CreatePost />
       {
-        posts && posts.map((post, index) => <Post key={post.id} post={post} index={index} />)
+        filtered && filtered.map((post, index) => <Post key={post.id} post={post} index={index} />)
       }
     </Container>
   );
@@ -46,7 +46,7 @@ const Posts = ({posts, updateVoteCount, reloadData}) => {
 const mapStateToProps = state => {
   return {
     posts: state.main.posts,
-    // userLiked: state.userVoted
+    filtered: state.main.filtered
   }
 }
 

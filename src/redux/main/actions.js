@@ -3,10 +3,9 @@ import {
     UPVOTE_POST,
     SELECT_POST,
     ADD_COMMENT,
-    ADD_SUB_COMMENT
+    ADD_SUB_COMMENT,
+    SEARCH_POSTS
 } from './types'
-
-import dummyData from '../../dummy-data';
 
 const fetchData = (posts) => () => {
     return { type: FETCH_DATA, payload: posts }
@@ -20,6 +19,10 @@ const reloadData = () => (dispatch, getState) => {
 const updateVoteCount = (postId, newVotes) => {
     return { type: UPVOTE_POST, payload: [postId, newVotes] }
 }
+
+const setSearched = filteredPosts => 
+ ({type: SEARCH_POSTS, payload: filteredPosts })
+
 
 const selectPost = (postId) => async (dispatch, getState) => {
     const state = getState();
@@ -42,17 +45,29 @@ const createComment = (parentId, comment) => async (dispatch, getState) => {
 }
 const createSubComment = (postId, parentId, newComment) => async (dispatch, getState) => {
     // console.log(parentId, newComment)
-    let state = getState();
-
 
     dispatch({type: ADD_SUB_COMMENT, payload: [postId, parentId, newComment]})
 }
 
+const searchPosts = (searchValue)  => (dispatch, getState) => {
+    console.log('search', searchValue)
+    let filteredPosts;
+    let state = getState();
+    filteredPosts = state.main.posts.filter(p => {
+        if(p.username.toLowerCase().includes(searchValue) || p.description.toLowerCase().includes(searchValue)) {
+            return p;
+        } 
+    })
+    console.log(filteredPosts)
+    dispatch(setSearched(filteredPosts));
+
+}
 export default {
     fetchData,
     reloadData,
     updateVoteCount,
     selectPost,
     createComment,
-    createSubComment
+    createSubComment,
+    searchPosts
 };

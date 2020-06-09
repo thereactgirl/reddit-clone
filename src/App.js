@@ -6,8 +6,7 @@ import Post from './components/posts/Post';
 
 // authenticate
 import PrivateRoute from './authentication/PrivateRoute';
-//redux
-import { connect } from 'react-redux';
+import Authenticate from './authentication/Authenticate';
 
 
 import { Router, Route, Switch } from 'react-router-dom';
@@ -16,11 +15,11 @@ import history from "./history";
 
 
 
-const App = ({auth}) => {
+const App = () => {
   return (
         <Router history={history}>
           <Switch>
-            <Route exact path='/' component={Login} auth={auth} />
+            <Route exact path='/' component={Login}  />
             <Nav />
           </Switch>
           <PrivateRoute path='/post/:id' component={Post} />
@@ -30,13 +29,5 @@ const App = ({auth}) => {
   );
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-});
 
-export default connect(
-  mapStateToProps,
-  {}
-)(App);
-// export default WithAuth();
-// export default App;
+export default Authenticate(App);

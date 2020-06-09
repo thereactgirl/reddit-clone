@@ -3,7 +3,9 @@ import {
     UPVOTE_POST,
     SELECT_POST,
     ADD_COMMENT,
-    ADD_SUB_COMMENT
+    ADD_SUB_COMMENT,
+    SEARCH_POSTS
+
 } from './types';
 
 const defaultState = {
@@ -134,11 +136,14 @@ const defaultState = {
         comments: []
     },
     userPhoto:
-      "http://fangmarks.com/wp-content/uploads/2013/05/instagram-fangmarks-may-10.jpg"
+      "http://fangmarks.com/wp-content/uploads/2013/05/instagram-fangmarks-may-10.jpg",
 };
 
+const filtered = defaultState.posts;
+
 const init = () => ({
-    ...defaultState
+    ...defaultState,
+    filtered
 });
 
 export default (state = init(), action) => {
@@ -204,6 +209,12 @@ export default (state = init(), action) => {
                 post: post,
                 // parent: parent,
             }   
+        }
+        case SEARCH_POSTS: {
+            return {
+                ...state, 
+                filtered: action.payload
+            }
         }
         default: 
             return state;
