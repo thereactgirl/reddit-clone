@@ -2,6 +2,9 @@
 # Reddit Clone
 This is a personal project for practice with all things front-end. I chose to rebuild the Reddit site because it has many common web app features like posts, comments, upvotes, and comment threading. Also, Reddit is cool!
 
+## Deployment
+https://master.d3754d8h5pxscd.amplifyapp.com/
+
 ## Getting Started
 
 - Fork or directly clone this repository to your local machine
