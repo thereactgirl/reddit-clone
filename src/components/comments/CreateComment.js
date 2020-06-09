@@ -45,6 +45,7 @@ const CreateComment = ({createComment, parentId, postId, comment, username, crea
 
   const submitComment = (e, parentId) => {
     e.stopPropagation();
+    e.preventDefault();
     console.log(parentId)
     let newComment = {};
     newComment.id = Date.now();
@@ -59,6 +60,7 @@ const CreateComment = ({createComment, parentId, postId, comment, username, crea
       return createSubComment(postId, parentId, newComment)
     }
 
+    setCommentText('');
     return createComment(parentId, newComment)
   }
   const changeComment =  (e) => {
@@ -72,14 +74,14 @@ const CreateComment = ({createComment, parentId, postId, comment, username, crea
             <form className={classes.root} onSubmit={(e) =>submitComment(e, parentId)}>
               <TextareaAutosize
                 type="text"
-                value={comment}
+                value={commentText}
                 placeholder="Add comment... "
                 rowsMin='5'
                 onChange={changeComment}
                 className={classes.input}
               />
+            <Button type='submit'>Submit</Button>
             </form>
-            <Button onClick={(e) => submitComment(e, parentId)}>Submit</Button>
           </Portal>
         ) : null}
       <div className={classes.alert} ref={container} />

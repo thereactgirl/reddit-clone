@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 const CreatePost = ({ username, createNewPost }) => {
   const classes = useStyles();
 
-  const [postText, setPostText] = useState();
+  const [postText, setPostText] = useState('');
 
   const handleChange =  (e) => {
     setPostText(e.target.value)
@@ -84,7 +84,9 @@ const CreatePost = ({ username, createNewPost }) => {
 
     console.log('new post', newPost)
     setPostText('')
-    return createNewPost(newPost)
+    if(newPost.description !== undefined && newPost.description !== '' ){
+      return createNewPost(newPost)
+    }
   }
 
     return (

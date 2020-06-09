@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Comments = ({ postId, postComments, match, index, selectedPost }) => {
   const classes = useStyles();
-  const [comments, setComments] = useState([postComments]);
+  // const [comments, setComments] = useState([postComments]);
 
   // useEffect(() => {
   // }, [postComments])
@@ -55,7 +55,7 @@ const Comments = ({ postId, postComments, match, index, selectedPost }) => {
     )}
 
     {
-      match && postComments.length &&  postComments.map((comment) => <Comment key={`${comment.postId}-${comment.parentId}-${comment.id}`} comment={comment} parentId={comment.id} postId={postId}  />)
+      match && postComments.length > 0 &&  postComments.map((comment) => <Comment key={`${comment.postId}-${comment.parentId}-${comment.id}`} comment={comment} parentId={comment.id} postId={postId}  />)
     } 
    {match && <CreateComment parentId={postId} postId={postId} /> }
     </div>
