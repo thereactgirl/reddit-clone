@@ -4,7 +4,8 @@ import {
     SELECT_POST,
     ADD_COMMENT,
     ADD_SUB_COMMENT,
-    SEARCH_POSTS
+    SEARCH_POSTS,
+    CREATE_POST
 } from './types'
 
 const fetchData = (posts) => () => {
@@ -62,6 +63,11 @@ const searchPosts = (searchValue)  => (dispatch, getState) => {
     dispatch(setSearched(filteredPosts));
 
 }
+
+const createNewPost = (newPost) => {
+    return ({ type: CREATE_POST, payload: newPost})
+}
+
 export default {
     fetchData,
     reloadData,
@@ -69,5 +75,6 @@ export default {
     selectPost,
     createComment,
     createSubComment,
-    searchPosts
+    searchPosts,
+    createNewPost,
 };

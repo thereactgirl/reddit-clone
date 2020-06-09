@@ -4,8 +4,8 @@ import {
     SELECT_POST,
     ADD_COMMENT,
     ADD_SUB_COMMENT,
-    SEARCH_POSTS
-
+    SEARCH_POSTS,
+    CREATE_POST
 } from './types';
 
 const defaultState = {
@@ -202,7 +202,7 @@ export default (state = init(), action) => {
             findDeep(state.posts, parentId)
             console.log('comment', parent)
             post.comments = [...state.selectedPost.comments]
-            parent.comments = [...parent.comments, action.payload[2]]
+            parent.comments = [action.payload[2], ...parent.comments]
             return {
                 ...state,
                 posts: [...state.posts],
@@ -214,6 +214,13 @@ export default (state = init(), action) => {
             return {
                 ...state, 
                 filtered: action.payload
+            }
+        }
+        case CREATE_POST: {
+            return {                
+                ...state,
+                posts: [...state.posts, action.payload],
+                filtered: [action.payload, ...state.filtered]
             }
         }
         default: 

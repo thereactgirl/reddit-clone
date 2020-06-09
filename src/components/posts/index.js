@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Posts = ({posts, filtered}) => {
   const classes = useStyles();
  
-
+  posts = filtered ? filtered : posts
   return (
     <Container 
       classes={{
@@ -37,7 +37,7 @@ const Posts = ({posts, filtered}) => {
     >
     <CreatePost />
       {
-        filtered && filtered.map((post, index) => <Post key={post.id} post={post} index={index} />)
+        posts && posts.map((post, index) => <Post key={post.id} post={post} index={index} />)
       }
     </Container>
   );
