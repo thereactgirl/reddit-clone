@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
 
+// react router
 import { Link, useHistory } from 'react-router-dom';
 
+//redux
+//redux
+import actions from '../../redux/auth/actions';
+import { connect } from 'react-redux';
+
+
+//material ui 
 import {
-    AppBar,
-    Badge,
-    Divider,
-    IconButton,
-    InputBase,
-    Menu,
-    MenuItem,
-    Toolbar,
-    Typography,
-    Grid,
+  AppBar,
+  Badge,
+  Divider,
+  IconButton,
+  InputBase,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+  Grid,
 } from '@material-ui/core';
+import { fade, makeStyles } from '@material-ui/core/styles';
 
 //icons
 import SearchIcon from '@material-ui/icons/Search';
@@ -173,7 +181,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const  Nav = () => {
+const  Nav = ({doLogout}) => {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -212,18 +220,22 @@ const  Nav = () => {
     >
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          aria-label="account of current user"
+          aria-label="sign out"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          onClick={doLogout}
         >
           <AccountCircle />
+        <p>Sign Out</p>
         </IconButton>
-        <p>My Profile</p>
       </MenuItem>      
       <MenuItem>
         <IconButton
-          color="inherit"
+           aria-label="account settings of current user"
+           aria-controls="primary-search-account-menu"
+           aria-haspopup="true"
+           color="inherit"
         >
           <SettingsIcon />
         </IconButton>
@@ -416,4 +428,14 @@ const  Nav = () => {
   );
 }
 
-export default Nav;
+
+const mapStateToProps = state => {
+  return {
+     
+  }
+}
+
+const mapDispatchToProps =  {
+  doLogout: actions.doLogout
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

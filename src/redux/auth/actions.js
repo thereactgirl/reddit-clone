@@ -3,7 +3,7 @@ import {
     AUTH_LOGOUT
 } from "./types";
 import history from '../../history';
-console.log(history)
+// console.log(history)
 
 const userLogin = username => ({
   type: AUTH_LOGIN,
@@ -20,6 +20,7 @@ const fakeLoginRequest = username =>
       username !== "" ? resolve(username) : reject("Please enter a username");
     }, 1000),
   );
+// TO DO : add loading state and loader
 
 const doLogin = username => async dispatch => {
     console.log('do login', username)
@@ -33,6 +34,9 @@ const doLogin = username => async dispatch => {
 };
 
 const doLogout = () => dispatch => {
+  console.log('do logout fired');
+  localStorage.getItem('username')
+  localStorage.removeItem('username')
   dispatch(userLogout());
 };
 

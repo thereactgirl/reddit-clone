@@ -6,6 +6,7 @@ import Post from './components/posts/Post';
 
 // authenticate
 import WithAuth from './authentication/WithAuth';
+import PrivateRoute from './authentication/PrivateRoute';
 //redux
 import { connect } from 'react-redux';
 
@@ -21,11 +22,11 @@ const App = ({auth}) => {
         <Router history={history}>
           <Switch>
             <Route exact path='/' component={Login} auth={auth} />
-          <Nav />
+            <Nav />
           </Switch>
-          <Route path='/post/:id' component={Post} />
+          <PrivateRoute path='/post/:id' component={Post} />
           {/* <Posts /> */}
-          <Route path='/home' component={Posts} />
+          <PrivateRoute path='/home' component={Posts} />
         </Router>
   );
 }
