@@ -10,7 +10,6 @@ https://master.d3754d8h5pxscd.amplifyapp.com/
 
 - Fork or directly clone this repository to your local machine
 - Use the `yarn` command to install dependencies including:
-  - `React`
   - `Material UI`
   - `React Router`
   - `Redux'
@@ -26,6 +25,8 @@ https://master.d3754d8h5pxscd.amplifyapp.com/
 
 - [React](https://reactjs.org/)
 - [Material UI](https://material-ui.com/)
+- [Redux](https://redux.js.org/)
+- [React Router](https://reacttraining.com/react-router/)
 
 ## Project Management
 
