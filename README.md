@@ -2,7 +2,11 @@
 # Reddit Clone
 This is a personal project for practice with all things front-end. I chose to rebuild the Reddit site because it has many common web app features like posts, comments, upvotes, and comment threading. Also, Reddit is cool!
 
+## Screenshots
+![image](https://github.com/rleslie1015/reddit-clone/assets/login.png)
+
 ## Deployment
+Deployed with AWS Amplify
 https://master.d3754d8h5pxscd.amplifyapp.com/
 
 ## Getting Started
