@@ -18,6 +18,11 @@ import PostHeader from "../../components/posts/PostHeader";
 
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: 15,
+    maxWidth: '1120px',
+   
+  },
     avatar: {
         width: 50,
         borderRadius: '50%'
@@ -71,7 +76,7 @@ const Post = ({ post, index, selectPost, selectedPost, match, reloadData, posts 
   }, [selectedPost])
 
   return (
-    <Container>
+    <Container className={classes.container}>
     {post ?
     <div className={classes.postBorder}>
       {!match ? <Upvotes voteCount={post.votes} post={post} postId={post.id} index={index} /> : <Upvotes voteCount={post.votes} post={post} postId={post.id} index={location && location.state && location.state.index} /> }
