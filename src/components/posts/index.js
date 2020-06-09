@@ -15,7 +15,6 @@ import {
 import Post from "./Post";
 import CreatePost from './CreatePost';
 import actions from "../../redux/main/actions";
-import auth from '../../redux/auth/actions';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,8 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Posts = ({posts, filtered}) => {
   const classes = useStyles();
- 
+  
   posts = filtered ? filtered : posts
+
   return (
     <Container 
       classes={{

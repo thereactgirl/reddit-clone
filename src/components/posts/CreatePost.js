@@ -71,18 +71,19 @@ const CreatePost = ({ username, createNewPost }) => {
 
   const submitPost = (e) => {
     e.preventDefault();
-    
+    const date = new Date()
     let newPost = {};
     newPost.id = Date.now();
     newPost.username = username;
     newPost.description = postText;
     newPost.comments = [];
     newPost.votes = 0;
-    newPost.timestame = new Date().toLocaleString();
+    newPost.timestamp = date.toDateString() + ", " + date.toLocaleTimeString();
     newPost.imageUrl = postUrl;
     newPost.thumbnailUrl = redditAvatar;
 
     console.log('new post', newPost)
+    setPostText('')
     return createNewPost(newPost)
   }
 

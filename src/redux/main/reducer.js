@@ -18,6 +18,7 @@ const defaultState = {
             imageUrl: 'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1876&q=80',
             votes: 400,
             timestamp: "July 17th 2017, 12:42:40 pm",
+            userVoted: false,
             comments: [
                 {
                     id: 1,
@@ -89,6 +90,7 @@ const defaultState = {
             imageUrl: 'https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3750&q=80',
             votes: 4307,
             timestamp: "July 15th 2017, 03:12:09 pm",
+            userVoted: false,
             comments: [
                 {
                     id: 8,
@@ -124,7 +126,6 @@ const defaultState = {
             ]
         }
     ],
-    userVoted: [],
     selectedPost: {
         id: '',
         username: '',
@@ -133,6 +134,7 @@ const defaultState = {
         imageUrl: '',
         votes: null,
         timestamp: '',
+        userVoted: false,
         comments: []
     },
     userPhoto:
@@ -156,13 +158,15 @@ export default (state = init(), action) => {
         };
         case UPVOTE_POST: {
             let post = state.posts.find((post) => post.id === action.payload[0])
-            // post = {...state, votes: action.newVotes}
+            post = {...post,
+                    votes: action.payload[1],
+                } 
                     
             return {
                 ...state,
-                post:   post.votes = action.payload[1]
+                posts: [...state.posts],
+                post: post
                 // selectedPost: {...post},
-                // posts: [...state.posts]
             }
             
         }

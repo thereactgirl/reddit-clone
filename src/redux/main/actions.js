@@ -17,8 +17,8 @@ const reloadData = () => (dispatch, getState) => {
     return fetchData(posts)(dispatch)
 }
 
-const updateVoteCount = (postId, newVotes) => {
-    return { type: UPVOTE_POST, payload: [postId, newVotes] }
+const updateVoteCount = (postId, votes) => {
+    return { type: UPVOTE_POST, payload: [postId, votes] }
 }
 
 const setSearched = filteredPosts => 

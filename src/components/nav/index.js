@@ -210,6 +210,9 @@ const  Nav = ({doLogout, username}) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const goHome = () => {
+    history.push('/home')
+  }
   const menuId = 'menu';
   const renderMenu = (
     <Menu
@@ -307,14 +310,11 @@ const  Nav = ({doLogout, username}) => {
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
               <Grid item sm={1} md={1} lg={4} className={classes.gridPost}>
-                  <Grid className={classes.redditLogoWrapper}>
+                  <Grid className={classes.redditLogoWrapper} onClick={goHome}>
                       <IconButton
                         edge="start"
                         className={classes.iconButton}
                         aria-label="reddit logo"
-                        onClick={() => {
-                          history.push('/home')
-                        }}
                       >
                       <RedditIcon fontSize='large' color='primary' />
                       </IconButton>
@@ -340,7 +340,7 @@ const  Nav = ({doLogout, username}) => {
                 <Search />
               </Grid>
 
-              <Grid item sm={2} md={2} lg={2} className={classes.gridContainer}>
+              <Grid item sm={2} md={2} lg={2} className={classes.gridContainer} onClick={goHome}>
                       <IconButton>
                           <TrendingUpIcon />
                       </IconButton>
@@ -355,28 +355,22 @@ const  Nav = ({doLogout, username}) => {
               <Divider orientation="vertical" flexItem className={classes.hide} />
 
               <Grid item md={2} lg={1} className={classes.mdScreen}>
-                  {/* <Grid item md={4} className={classes.gridItem}> */}
-                      <IconButton>
+                      <IconButton onClick={goHome}>
                           <SmsRoundedIcon />
                       </IconButton>
-                  {/* </Grid> */}
-                  {/* <Grid item md={4} className={classes.gridItem}> */}
-                      <IconButton aria-label="show 4 new mails" color="inherit">
+                      <IconButton aria-label="show 4 new mails" color="inherit" onClick={goHome}>
                           <Badge badgeContent={4} color="secondary">
                               <MailIcon />
                           </Badge>
                       </IconButton>
-                  {/* </Grid> */}
-                  {/* <Grid item md={4} className={classes.gridItem}> */}
                       <IconButton>
                           <BorderColorIcon />
                       </IconButton>
-                  {/* </Grid> */}
               </Grid>
 
 
               <Grid item md={2} lg={3}>
-                <div className={classes.getCoins}>
+                <div className={classes.getCoins} onClick={goHome}>
                   <CopyrightRoundedIcon fontSize="small" className={classes.coinIcon}/> 
                   <Typography className={classes.getCoinsText}>
                       Get Coins
