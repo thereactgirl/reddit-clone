@@ -5,7 +5,6 @@ import Login from './screens/Login';
 import Post from './components/posts/Post';
 
 // authenticate
-import WithAuth from './authentication/WithAuth';
 import PrivateRoute from './authentication/PrivateRoute';
 //redux
 import { connect } from 'react-redux';

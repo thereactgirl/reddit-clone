@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
       width: '60%', 
       minHeight: 500,
       margin: 10,
+      [theme.breakpoints.down('sm')]: {
+        width: '100%'
+      },
     },
     header: {
       position: 'absolute',
@@ -58,7 +61,6 @@ const Post = ({ post, index, selectPost, selectedPost, match, reloadData, posts 
   post = selectedPost ? selectedPost : post;
 
   useEffect(() => {
-    console.log(params.id)
     selectPost(params.id)
     // reloadData();
   }, [])

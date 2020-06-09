@@ -6,10 +6,6 @@ import {
     ADD_SUB_COMMENT
 } from './types';
 
-import dummyData from '../../dummy-data';
-
-console.log(dummyData)
-
 const defaultState = {
     posts: [
         {
@@ -145,7 +141,7 @@ const init = () => ({
     ...defaultState
 });
 
-export default (state = defaultState, action) => {
+export default (state = init(), action) => {
     switch(action.type) {
         case FETCH_DATA: {
             return {
@@ -154,7 +150,7 @@ export default (state = defaultState, action) => {
             };
         };
         case UPVOTE_POST: {
-            let post = state.posts.find((post) => post.id == action.payload[0])
+            let post = state.posts.find((post) => post.id === action.payload[0])
             // post = {...state, votes: action.newVotes}
                     
             return {
@@ -172,7 +168,7 @@ export default (state = defaultState, action) => {
             }
         }
         case ADD_COMMENT: {
-            let post = state.posts.find((post) => post.id == action.payload[0])
+            let post = state.posts.find((post) => post.id === action.payload[0])
             post.comments = [...state.selectedPost.comments, action.payload[1]]
             return {
                 ...state,
@@ -181,13 +177,13 @@ export default (state = defaultState, action) => {
             }
         }
         case ADD_SUB_COMMENT: {
-            let post = state.posts.find((post) => post.id == action.payload[0])
+            let post = state.posts.find((post) => post.id === action.payload[0])
             let parentId = action.payload[1];
             let parent;
             let findDeep = function(comments, id) {
                 console.log('id', id)
                 return comments.find(function(c) {
-                    if(c.id == id) {
+                    if(c.id === id) {
                         console.log('c', c)
                         console.log('parentId', parentId)
                         parent = c;

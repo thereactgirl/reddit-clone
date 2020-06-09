@@ -52,10 +52,10 @@ const useStyles = makeStyles((theme) => ({
     background: '#F24506',
     padding: 3
   },
-  createPost: {
+  hide: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
+      display: 'flex',
     },
   },
   search: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '100%',
+    // width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
       width: 'auto',
@@ -102,6 +102,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sectionMobile: {
+    borderRadius: '4px 4px 0 0',
+    border: '1px solid ghostwhite',
+    padding: '4px 4px',
     display: 'flex',
     [theme.breakpoints.up('md')]: {
       display: 'none',
@@ -122,16 +125,37 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     lineHeight: '16px',
     fontSize: '13px',
+    width: 'max-content',
+    margin: '0 auto',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
   coinIcon: {
       color: '#ddbd37',
       marginRight: 10,
   },
+  getCoinsText: {
+    [theme.breakpoints.down('md')]: {
+      // display: 'none',
+    },
+  },
   gridContainer: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
   },
+  mdScreen: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+},
   gridPost: {
     display: 'flex',
     alignItems: 'center',
@@ -141,20 +165,37 @@ const useStyles = makeStyles((theme) => ({
   },
   mainContainer: {
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexWrap: 'nowrap'
   },
   redditLogoWrapper: {
     margin: '0 10% 0 0',
     display: 'flex',
     alignItems: 'center'
   },
+  redditLogo: {
+    display: 'none',
+    [theme.breakpoints.up('lg')]: {
+      display: 'flex',
+    },
+  },
+  createPost: {
+    display: 'none',
+    [theme.breakpoints.up('lg')]: {
+      display: 'flex',
+    },
+  },
   userMenu : {
-    width: '150px',
+    width: 'max-content',
     borderRadius: '5px',
     height: '41px',
     display: 'flex',
     justifyContent: 'space-between',
     padding: 0,
+    marginLeft: '-5px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
       border: '1px solid gainsboro',
@@ -181,7 +222,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const  Nav = ({doLogout}) => {
+const  Nav = ({doLogout, username}) => {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -207,7 +248,7 @@ const  Nav = ({doLogout}) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -218,22 +259,22 @@ const  Nav = ({doLogout}) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={doLogout}>
         <IconButton
           aria-label="sign out"
-          aria-controls="primary-search-account-menu"
+          aria-controls="menu"
           aria-haspopup="true"
           color="inherit"
-          onClick={doLogout}
+          // onClick={doLogout}
         >
           <AccountCircle />
-        <p>Sign Out</p>
         </IconButton>
+        <p>Sign Out</p>
       </MenuItem>      
       <MenuItem>
         <IconButton
            aria-label="account settings of current user"
-           aria-controls="primary-search-account-menu"
+           aria-controls="menu"
            aria-haspopup="true"
            color="inherit"
         >
@@ -244,13 +285,13 @@ const  Nav = ({doLogout}) => {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = 'menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
-      keepMounted
+      keepMounteddo
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -274,7 +315,7 @@ const  Nav = ({doLogout}) => {
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
+          aria-controls="menu-mobile"
           aria-haspopup="true"
           color="inherit"
         >
@@ -287,10 +328,10 @@ const  Nav = ({doLogout}) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color='#fff'>
+      <AppBar position="static" color='inherit'>
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
-              <Grid item md={2} className={classes.gridPost}>
+              <Grid item sm={1} md={1} lg={4} className={classes.gridPost}>
                   <Grid className={classes.redditLogoWrapper}>
                       <IconButton
                         edge="start"
@@ -302,7 +343,7 @@ const  Nav = ({doLogout}) => {
                       >
                       <RedditIcon fontSize='large' color='primary' />
                       </IconButton>
-                      <img src={RedditLogo} alt='spelled out reddit logo' />
+                      <img className={classes.redditLogo} src={RedditLogo} alt='spelled out reddit logo' />
                   </Grid>
                   <Grid>
                       <IconButton
@@ -320,7 +361,8 @@ const  Nav = ({doLogout}) => {
                   </Grid>
               </Grid>
           
-              <Grid item md={5} className={classes.search}>
+              <Grid item xs={8} sm={5} md={4} lg={6}>
+                <div className={classes.search}>
                   <div className={classes.searchIcon}>
                   <SearchIcon />
                   </div>
@@ -332,29 +374,24 @@ const  Nav = ({doLogout}) => {
                   }}
                   inputProps={{ 'aria-label': 'search' }}
                   />
+                </div>
               </Grid>
 
-              <Grid item md={1} className={classes.gridContainer}>
-                  {/* <Grid item md={4} className={classes.gridItem}> */}
+              <Grid item sm={2} md={2} lg={2} className={classes.gridContainer}>
                       <IconButton>
                           <TrendingUpIcon />
                       </IconButton>
-                  {/* </Grid> */}
-                  {/* <Grid item md={4} className={classes.gridItem}> */}
                       <IconButton>
                           <EqualizerIcon />
                       </IconButton>
-                  {/* </Grid> */}
-                  {/* <Grid item md={4} className={classes.gridItem}> */}
                       <IconButton>
                           <FiberPinIcon />
                       </IconButton>
-                  {/* </Grid> */}
               </Grid>
 
-              <Divider orientation="vertical" flexItem />
+              <Divider orientation="vertical" flexItem className={classes.hide} />
 
-              <Grid item md={1} className={classes.gridContainer}>
+              <Grid item md={2} lg={1} className={classes.mdScreen}>
                   {/* <Grid item md={4} className={classes.gridItem}> */}
                       <IconButton>
                           <SmsRoundedIcon />
@@ -375,16 +412,16 @@ const  Nav = ({doLogout}) => {
               </Grid>
 
 
-              <Grid item md={1}>
+              <Grid item md={2} lg={3}>
                 <div className={classes.getCoins}>
                   <CopyrightRoundedIcon fontSize="small" className={classes.coinIcon}/> 
-                  <Typography>
+                  <Typography className={classes.getCoinsText}>
                       Get Coins
                   </Typography>
                 </div>
               </Grid>
 
-              <Grid item md={1}>
+              <Grid item md={1} lg={2}>
                 <IconButton
                     className={classes.userMenu}
                     edge="end"
@@ -396,7 +433,7 @@ const  Nav = ({doLogout}) => {
                 >
                     <img src={redditAvatar} alt='reddit user avatar' />
                     <div className={classes.tinyWrapper}>
-                      <p className={classes.tiny}>leslielife</p>
+                      <p className={classes.tiny}>{username}</p>
                       <p className={classes.tiny2}>
                         <img src={karma} className={classes.karma} />
                         1 karma
@@ -409,14 +446,18 @@ const  Nav = ({doLogout}) => {
 
               <div className={classes.sectionMobile}>
                 <IconButton
-                  aria-label="show more"
-                  aria-controls={mobileMenuId}
-                  aria-haspopup="true"
-                  onClick={handleMobileMenuOpen}
-                  color="inherit"
-                >
-                  <MoreIcon />
-                </IconButton>
+                      // className={classes.userMenu}
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleMobileMenuOpen}
+                      color="inherit"
+                  >
+                      <img src={redditAvatar} alt='reddit user avatar' />
+                    
+                      <ArrowDropDownIcon />
+                  </IconButton>
               </div>
 
             </Grid>
@@ -431,7 +472,7 @@ const  Nav = ({doLogout}) => {
 
 const mapStateToProps = state => {
   return {
-     
+     username: state.auth.username
   }
 }
 

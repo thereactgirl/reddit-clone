@@ -35,8 +35,8 @@ const doLogin = username => async dispatch => {
 
 const doLogout = () => dispatch => {
   console.log('do logout fired');
-  localStorage.getItem('username')
   localStorage.removeItem('username')
+  localStorage.removeItem('password')
   dispatch(userLogout());
 };
 

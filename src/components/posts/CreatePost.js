@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     alignItems: 'center',
     border: '1px solid lightgrey',
-
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
   },
   avatar: {
       borderRadius: '50%',
@@ -32,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
     background: '#F6F7F8',
     height: '40px',
     width: '70%',
-    margin: '0 5px'
+    margin: '0 5px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),

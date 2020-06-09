@@ -7,7 +7,6 @@ import {
 } from './types'
 
 import dummyData from '../../dummy-data';
-console.log(dummyData)
 
 const fetchData = (posts) => () => {
     return { type: FETCH_DATA, payload: posts }
@@ -39,7 +38,6 @@ const createComment = (parentId, comment) => async (dispatch, getState) => {
     let state = getState();
 
     const post = await state.main.posts.find((post) => post.id == parentId);
-    console.log('post', post)
     dispatch({type: ADD_COMMENT, payload: [parentId, comment]})
 }
 const createSubComment = (postId, parentId, newComment) => async (dispatch, getState) => {

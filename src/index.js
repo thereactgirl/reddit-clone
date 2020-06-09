@@ -7,7 +7,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 
 //redux
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { combineReducers } from "redux";
 import reducer from './redux/main/reducer';
 import authReducer from './redux/auth/reducer';

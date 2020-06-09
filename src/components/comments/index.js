@@ -29,12 +29,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Comments = ({ postId, postComments, match, index, selectedPost }) => {
   const classes = useStyles();
-console.log('posfcc', postComments)
   const [comments, setComments] = useState([postComments]);
 
-  useEffect(() => {
-    console.log('render')
-  }, [postComments])
+  // useEffect(() => {
+  // }, [postComments])
 
   return (
     <div className={classes.commentContainer}>

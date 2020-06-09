@@ -2,8 +2,8 @@ import * as types from "./types";
 
 const initialState = {
   username: (localStorage.getItem('username') ? localStorage.getItem('username') : ''),
-  password: "",
-  isLoggedIn: (localStorage.getItem('username' === undefined) ? true : false)
+  password: (localStorage.getItem('password') ? localStorage.getItem('password') : ''),
+  isLoggedIn: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -12,6 +12,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         username: action.username,
+        password: (localStorage.getItem('password') ? localStorage.getItem('password') : ''),
         isLoggedIn: true
       };
     case types.AUTH_LOGOUT:

@@ -142,9 +142,9 @@ const Login = ({ doLogin, doLogout }) => {
   const onLogin = e => {
     // const { username } = this.state;
     localStorage.setItem("username", username);
-
+    localStorage.setItem("password", password);
     e.preventDefault();
-    doLogin(username);
+    doLogin(username, password);
     // this.setState({ username: "" });
   };
 
@@ -177,6 +177,7 @@ const Login = ({ doLogin, doLogout }) => {
             <RedditTextField
               name='password'
               value={password}
+              type='password'
               label="PASSWORD"
               className={classes.margin}
               variant="filled"

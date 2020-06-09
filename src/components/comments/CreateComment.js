@@ -85,7 +85,7 @@ const CreateComment = ({createComment, parentId, postId, comment, username, crea
       <div className={classes.alert} ref={container} />
 
       <Button type="button" className={classes.button} onClick={handleClick}>
-        <CommentIcon fontSize='12px'/>
+        <CommentIcon fontSize='small'/>
         {show ? 'Cancel' : 'Reply'}
       </Button>
     </div>

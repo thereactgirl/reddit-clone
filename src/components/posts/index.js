@@ -21,12 +21,14 @@ const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: 15,
     maxWidth: '1120px',
+   
   }
 }))
 
 const Posts = ({posts, updateVoteCount, reloadData}) => {
   const classes = useStyles();
  
+
   return (
     <Container 
       classes={{

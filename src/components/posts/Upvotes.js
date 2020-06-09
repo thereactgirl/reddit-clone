@@ -37,7 +37,6 @@ const Upvotes = ({posts, postId, updateVoteCount, post, userVotedState, index}) 
 
   let location = useLocation();
 
-  console.log(location)
   index = (typeof index === undefined) ?  location.state.index : index
 
   useEffect(() => {
