@@ -20,12 +20,11 @@ const rootReducer = combineReducers({
   main: reducer,
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer, /* preloadedState, */
-  compose(applyMiddleware(thunkMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-);
-
+const store = createStore(reducer, preloadedState, composeEnhancers(
+  applyMiddleware(thunk)
+));
 
 const theme = createMuiTheme({
   palette: {
