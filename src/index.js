@@ -22,8 +22,8 @@ const rootReducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, preloadedState, composeEnhancers(
-  applyMiddleware(thunk)
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(thunkMiddleware)
 ));
 
 const theme = createMuiTheme({
