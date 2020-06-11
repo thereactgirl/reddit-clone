@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
   leftColumn: {
     width: "200px",
+    [theme.breakpoints.down('xs')]: {
+      width: "50px",
+    },
   },
   splash: {
     backgroundImage:
@@ -41,9 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
   formContainer: {
     padding: "24px",
-    minWidth: "440px",
     marginBottom: "10px",
     display: "block",
+    [theme.breakpoints.up('sm')]: {
+      minWidth: "440px",
+    },
   },
   redditCircle: {
     background: "#F24506",
