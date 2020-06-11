@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ee655f24-2c41-4f24-b304-73c4083a0954/deploy-status)](https://app.netlify.com/sites/lesliesredditclone/deploys)
 
 # Reddit Clone
 This is a personal project for practice with all things front-end. I chose to rebuild the Reddit site because it has many common web app features like posts, comments, upvotes, and comment threading. Also, Reddit is cool!
