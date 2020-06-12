@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: 15,
     maxWidth: '1120px',
-   
+   [theme.breakpoints.down('xs')]: {
+     padding: 0, 
+   }
   }
 }))
 

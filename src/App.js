@@ -23,9 +23,9 @@ const App = () => {
             <Route exact path='/' component={Login}  />
             <Nav />
           </Switch>
-          {/* <PrivateRoute path='/post/:id' component={Post} /> */}
+          <PrivateRoute path='/post/:id' component={Post} />
           {/* <Posts /> */}
-          {/* <PrivateRoute path='/home' component={Posts} /> */}
+          <PrivateRoute path='/home' component={Posts} />
         </Router>
   );
 }
