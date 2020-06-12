@@ -457,8 +457,8 @@ const  Nav = ({doLogout, username}) => {
           </Toolbar>
           </Container>
       </AppBar>
-      {/* {renderMobileMenu}
-      {renderMenu} */}
+      {renderMobileMenu}
+      {renderMenu}
     </div>
   );
 }
