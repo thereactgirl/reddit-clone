@@ -313,7 +313,7 @@ const  Nav = ({doLogout, username}) => {
   return (
     <div className={classes.grow}>
       <AppBar className="not-scrolled" position="static" color='inherit'>
-      <Container maxWidth="md">
+      <Container maxWidth="xlg">
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
                  { history.location.pathname !== '/home' ?
