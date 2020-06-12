@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
       border: '1px solid lightgrey',
       background: '#fff',
       width: '60%', 
-      minHeight: 500,
+      // minHeight: 500,
       // margin: 10,
       [theme.breakpoints.down('sm')]: {
         width: '100%'
