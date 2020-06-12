@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#fff',
     width: '60%',
     display: 'flex',
-    margin: 10,
+    // margin: 10,
     alignItems: 'center',
     border: '1px solid lightgrey',
     [theme.breakpoints.down('sm')]: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    paddingLeft: 5,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -55,7 +55,13 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
       color: 'grey',
-    //   margin: '0 15px'
+  },
+  iconContainer: {
+    display: 'flex'
+  },
+  iconButton: {
+    padding: '12px 6px',
+
   }
 }))
 
@@ -104,12 +110,15 @@ const CreatePost = ({ username, createNewPost }) => {
               inputProps={{ 'aria-label': 'create-post' }}
               onChange={handleChange}
             />
-            <IconButton>
+            {/* <div className={classes.iconContainer}> */}
+
+            <IconButton className={classes.iconButton}>
                 <ImageIcon fontSize={'large'} className={classes.icon} />
             </IconButton>
-            <IconButton type="submit">
+            <IconButton type='submit' className={classes.iconButton}>
                 <AddBoxIcon fontSize={'large'} className={classes.icon} />
             </IconButton>
+            {/* </div> */}
           {/* </form> */}
         </form>
 

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
       background: '#fff',
       width: '60%', 
       minHeight: 500,
-      margin: 10,
+      // margin: 10,
       [theme.breakpoints.down('sm')]: {
         width: '100%'
       },
