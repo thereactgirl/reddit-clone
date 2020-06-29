@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 //material ui 
 import {
   AppBar,
+  Container,
   Badge,
   Divider,
   IconButton,
@@ -46,6 +47,10 @@ import HomeIcon from '@material-ui/icons/Home';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+  },
+  appbar: {
+    margin: 0,
+    overflow: 'hidden'
   },
   iconButton: {
     marginRight: theme.spacing(2),
@@ -307,7 +312,8 @@ const  Nav = ({doLogout, username}) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color='inherit'>
+      <AppBar className="not-scrolled" position="static" color='inherit'>
+      <Container maxWidth="xlg">
         <Toolbar style={{ minHeight: '30px'}}>
             <Grid container className={classes.mainContainer}>
                  { history.location.pathname !== '/home' ?
@@ -449,6 +455,7 @@ const  Nav = ({doLogout, username}) => {
 
             </Grid>
           </Toolbar>
+          </Container>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
