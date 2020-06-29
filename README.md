@@ -4,16 +4,15 @@
 This is a personal project for practice with all things front-end. I chose to rebuild the Reddit site because it has many common web app features like posts, comments, upvotes, and comment threading. Also, Reddit is cool!
 
 ## Deployment
-Deployed with AWS Amplify
-https://master.d3754d8h5pxscd.amplifyapp.com/
-
+Deployed with Netlify
+https://redditclone.leslierodriguez.dev/
 ## Getting Started
 
 - Fork or directly clone this repository to your local machine
 - Use the `yarn` command to install dependencies including:
   - `Material UI`
   - `React Router`
-  - `Redux'
+  - `Redux`
 - `yarn start` to run
 - *This project has no backend, data is not saved and there is real authentication. Password is not required to login.*
 
