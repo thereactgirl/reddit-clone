@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles, fade } from "@material-ui/core/styles";
+import React, { useState } from "react";
 
 //redux
 import { connect } from "react-redux";
@@ -7,7 +6,7 @@ import actions from '../redux/auth/actions';
 
 
 //material ui
-import { Grid, Button, Typography, TextField } from "@material-ui/core";
+import { Button, Typography, TextField } from "@material-ui/core";
 
 //icons
 import RedditIcon from "@material-ui/icons/Reddit";
@@ -16,7 +15,7 @@ import RedditIcon from "@material-ui/icons/Reddit";
 import clsx from "clsx";
 import { useStyles, useStylesReddit } from './Styles';
 
-
+// custom styled input 
 function RedditTextField(props) {
   const classes = useStylesReddit();
 
@@ -29,7 +28,7 @@ function RedditTextField(props) {
   );
 }
 
-const Login = ({ doLogin, doLogout }) => {
+const Login = ({ doLogin }) => {
   const classes = useStyles();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
@@ -43,15 +42,11 @@ const Login = ({ doLogin, doLogout }) => {
   };
 
   const onLogin = e => {
-    // const { username } = this.state;
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
     e.preventDefault();
     doLogin(username, password);
-    // this.setState({ username: "" });
   };
-
-  // const onLogout = () => this.props.doLogout();
 
   return (
     <div className={classes.pageColumns}>

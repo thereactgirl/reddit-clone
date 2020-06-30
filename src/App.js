@@ -6,14 +6,9 @@ import Post from './components/posts/Post';
 
 // authenticate
 import PrivateRoute from './authentication/PrivateRoute';
-import Authenticate from './authentication/Authenticate';
-
 
 import { Router, Route, Switch } from 'react-router-dom';
 import history from "./history";
-
-
-
 
 const App = () => {
   
@@ -24,11 +19,10 @@ const App = () => {
             <Nav />
           </Switch>
           <PrivateRoute path='/post/:id' component={Post} />
-          {/* <Posts /> */}
           <PrivateRoute path='/home' component={Posts} />
         </Router>
   );
 }
 
 
-export default Authenticate(App);
+export default App;

@@ -3,7 +3,7 @@ import * as types from "./types";
 const initialState = {
   username: (localStorage.getItem('username') ? localStorage.getItem('username') : ''),
   password: (localStorage.getItem('password') ? localStorage.getItem('password') : ''),
-  isLoggedIn: false
+  isLoggedIn: (localStorage.getItem('username') ? true : false),
 };
 
 const authReducer = (state = initialState, action) => {
