@@ -14,7 +14,7 @@ https://redditclone.leslierodriguez.dev/
   - `React Router`
   - `Redux`
 - `yarn start` to run
-- *This project has no backend, data is not saved and there is real authentication. Password is not required to login.*
+- *This project has no backend, data is not saved and there is no real authentication. To log in simple type a username.*
 
 ## Screenshots
 <img src="https://github.com/rleslie1015/reddit-clone/blob/master/src/assets/login.png" alt='login' width=800 />
