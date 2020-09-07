@@ -14,6 +14,7 @@ import RedditIcon from "@material-ui/icons/Reddit";
 //other
 import clsx from "clsx";
 import { useStyles, useStylesReddit } from './Styles';
+import splash from '../assets/splash.jpg';
 
 // custom styled input 
 function RedditTextField(props) {
@@ -51,7 +52,7 @@ const Login = ({ doLogin }) => {
   return (
     <div className={classes.pageColumns}>
       <div className={clsx(classes.column, classes.leftColumn)}>
-        <div className={classes.splash} />
+        <img className={classes.splash} src={splash} />
       </div>
       <div className={clsx(classes.column, classes.rightColumn)}>
         <div className={classes.formContainer}>

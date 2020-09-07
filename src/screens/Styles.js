@@ -21,11 +21,12 @@ export const useStyles = makeStyles((theme) => ({
       },
     },
     splash: {
-      backgroundImage:
-        "url(https://i.ibb.co/fF2yYy4/jr-korpa-EE1a0-KJa-Jj-E-unsplash.jpg)",
+      // backgroundImage:
+      //   "url(https://i.ibb.co/fF2yYy4/jr-korpa-EE1a0-KJa-Jj-E-unsplash.jpg)",
       height: "100vh",
       minHeight: "450px",
       backgroundRepeat: "no-repeat",
+      width: '100%',
       backgroundSize: "cover",
     },
     formContainer: {
